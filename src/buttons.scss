@@ -1,0 +1,13 @@
+.btn-pun-danger{
+  background-color: #f97561;
+  border-radius: 15px;
+  color: #fff !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: #fffb00;
+    color: #f97561 !important;
+    transition: all 0.3s ease;
+    transform: translateY(-10px);
+  }
+}
