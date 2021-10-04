@@ -29,12 +29,12 @@
         </div>
         <div class="content-contact">
           <h4 class="font-weiht-bold">Contact us</h4>
-          <p>
+          <label>
             <a href="mailto:chocopie.nuce@gmail.com"  class="text-contact">chocopie.nuce@gmail.com</a>
-          </p>
-          <p>
+          </label>
+          <label>
             <a href="tel:+84386624545"  class="text-contact">0386624545</a>
-          </p>
+          </label>
         </div>
       </div>
       <!-- Open Hours -->
@@ -44,9 +44,9 @@
         </div>
         <div class="content-contact">
           <h4 class="font-weiht-bold">Open Hours</h4>
-          <p class="mb-0">Mon - Fri: <span class="text-contact">8:00 AM to 5:00 PM</span></p>
-          <p class="mb-0">Saturday: <span class="text-contact">9:00 AM to 3:00 PM</span></p>
-          <p class="mb-0">Sunday: <span class="text-contact">9:00 AM to 2:00 PM</span></p>
+          <label>Mon - Fri: <span class="text-contact">8:00 AM to 5:00 PM</span></label>
+          <label>Saturday: <span class="text-contact">9:00 AM to 3:00 PM</span></label>
+          <label>Sunday: <span class="text-contact">9:00 AM to 2:00 PM</span></label>
         </div>
       </div>
       <!-- Location -->
@@ -69,5 +69,14 @@
 <div class="container">
   <div class="services">
     <h2 class="mb-5 font-weight-bold">Our services</h2>
+
+    <!-- Set up your HTML -->
+    <div>Some tags before</div>
+    <owl-carousel-o [options]="customOptions">
+      <ng-template carouselSlide>Slide 1</ng-template>
+      <ng-template carouselSlide>Slide 2</ng-template>
+      <ng-template carouselSlide>Slide 3</ng-template>
+    </owl-carousel-o>
+    <div>Some tags after</div>
   </div>
 </div>

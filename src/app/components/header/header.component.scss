@@ -1,7 +1,11 @@
-.header-absolute{
-  position: absolute;
+.header-sticky{
+  position: sticky;
   top: 0;
   width: 100%;
+  background-color: #fff;
+  z-index: 2;
+  transition: all 0.2s ease;
+  opacity: 0.95;
   .nav-pun-custom{
     height: 110px;
     padding: 20px;
@@ -10,4 +14,8 @@
 .nav-link{
   font-size: 20px;
   font-weight: 500;
+}
+
+.bg-pink{
+  background-color: #fffaf6;
 }
