@@ -1,0 +1,36 @@
+{
+  "services": [
+    {
+      "id": "pun_1kus4jjs--342",
+      "title": "Pet visit",
+      "description": "We will go with your little friend for a walk in the park, around the lake or somewhere while you don't have time for it.",
+      "price": "49",
+      "image": "./assets/pun_service/pet-visit.svg",
+      "time": "1 hr"
+    },
+    {
+      "id": "pun_1kus4pbss--832",
+      "title": "Pet bath",
+      "description": "The little friends will be bathed, taken care of their hair and really clean when you come to pick them up.",
+      "price": "99",
+      "image": "./assets/pun_service/pet-bath.svg",
+      "time": "2 hr"
+    },
+    {
+      "id": "pun_1kf2g34s--342",
+      "title": "Pet grooming",
+      "description": "Your dogs and cats will be neatly trimmed or styled as you want.",
+      "price": "39",
+      "image": "./assets/pun_service/grooming.svg",
+      "time": "1.5 hr"
+    },
+    {
+      "id": "pun_1hhf192f--342",
+      "title": "Flea treatment",
+      "description": "If your pet has bugs in it, itches and is red because of them, come to us and come back clean..",
+      "price": "49",
+      "image": "./assets/pun_service/flea_treatment.svg",
+      "time": "3 hr"
+    }
+  ]
+}

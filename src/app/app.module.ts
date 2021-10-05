@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
-
+import { NgxSpinnerModule } from "ngx-spinner";
+import { HttpClientModule, } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,6 +16,8 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule,
+    HttpClientModule,
+    NgxSpinnerModule,
     AppRoutingModule
   ],
   providers: [],

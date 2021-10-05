@@ -46,9 +46,7 @@
     }
   }
 }
-.text-contact {
-  color: #817d7d;
-}
+
 .home-contact{
   margin: 150px 0 50px 0;
 }
@@ -59,4 +57,55 @@
 }
 .services{
   padding-top: 160px;
+}
+.box-service {
+  border: 1px solid #e0dbdb;
+  padding: 60px 40px;
+  border-radius: 20px;
+  display: flex;
+  min-height: 350px;
+  cursor: pointer;
+  transition: 0.2s all ease-out;
+  &:hover{
+    border-color: #f97561;
+    transition: 0.2s all ease-in;
+  }
+}
+.box-img{
+  width: 125px !important;
+  height: 125px;
+  margin-bottom: 20px;
+  margin-right: 30px;
+}
+.badge{
+  padding: 16px 26px;
+  font-size: 16px;
+}
+.badge-pun-secondary{
+  background-color: #f2f0ef;
+}
+.home-about-img {
+  position: relative;
+  margin-right: 270px;
+}
+.img-about{
+  width: 100%;
+  max-width: 490px;
+  border-radius: 30px;
+  object-fit: cover;
+  transform: translate3d(100px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(-3deg) skew(0deg, 0deg);
+}
+.img-cat-3d{
+  position: absolute;
+  top: 50px;
+  right: 0;
+  border: 6px solid #fff;
+  max-width: 280px;
+  transform: translate3d(250px, 60px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(3deg) skew(0deg,0deg);
+}
+.about-us{
+  max-width: 45%;
+  p{
+    line-height: 1.889em;
+  }
 }

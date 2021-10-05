@@ -11,9 +11,19 @@ body {
   height: 100%;
   overflow-x: hidden;
 }
-.layout-content{
-  padding-top: 110px;
-}
 .cursor-pointer{
   cursor: pointer;
+}
+
+// background
+.background-cloud {
+  background-color: #fffaf6;
+}
+
+// Text
+.font-weight-500{
+  font-weight: 500;
+}
+.text-pun-secondary {
+  color: #817d7d;
 }

@@ -30,10 +30,10 @@
         <div class="content-contact">
           <h4 class="font-weiht-bold">Contact us</h4>
           <label>
-            <a href="mailto:chocopie.nuce@gmail.com"  class="text-contact">chocopie.nuce@gmail.com</a>
+            <a href="mailto:chocopie.nuce@gmail.com"  class="text-pun-secondary">chocopie.nuce@gmail.com</a>
           </label>
           <label>
-            <a href="tel:+84386624545"  class="text-contact">0386624545</a>
+            <a href="tel:+84386624545"  class="text-pun-secondary">0386624545</a>
           </label>
         </div>
       </div>
@@ -44,9 +44,9 @@
         </div>
         <div class="content-contact">
           <h4 class="font-weiht-bold">Open Hours</h4>
-          <label>Mon - Fri: <span class="text-contact">8:00 AM to 5:00 PM</span></label>
-          <label>Saturday: <span class="text-contact">9:00 AM to 3:00 PM</span></label>
-          <label>Sunday: <span class="text-contact">9:00 AM to 2:00 PM</span></label>
+          <label>Mon - Fri: <span class="text-pun-secondary">8:00 AM to 5:00 PM</span></label>
+          <label>Saturday: <span class="text-pun-secondary">9:00 AM to 3:00 PM</span></label>
+          <label>Sunday: <span class="text-pun-secondary">9:00 AM to 2:00 PM</span></label>
         </div>
       </div>
       <!-- Location -->
@@ -66,17 +66,39 @@
 
 <div class="container stick"></div>
 
-<div class="container">
+<!-- Preview services -->
+<div class="container mb-5">
   <div class="services">
     <h2 class="mb-5 font-weight-bold">Our services</h2>
-
-    <!-- Set up your HTML -->
-    <div>Some tags before</div>
     <owl-carousel-o [options]="customOptions">
-      <ng-template carouselSlide>Slide 1</ng-template>
-      <ng-template carouselSlide>Slide 2</ng-template>
-      <ng-template carouselSlide>Slide 3</ng-template>
+      <ng-template carouselSlide *ngFor="let service of listServices">
+        <a class="box-service" (click)="openService(service)">
+          <img class="box-img" [src]="service.image" [alt]="service.title">
+          <div class="d-flex flex-column">
+            <h3 class="font-weight-bold">{{service.title}}</h3>
+            <p>{{service.description}}</p>
+            <div class="d-flex mt-auto">
+              <span class="badge badge-pun-secondary mr-4">{{service.price | currency}}</span>
+              <span class="badge badge-pun-secondary">{{service.time}}</span>
+            </div>
+          </div>
+        </a>
+      </ng-template>
     </owl-carousel-o>
-    <div>Some tags after</div>
+  </div>
+</div>
+
+<!-- About us -->
+
+<div class="pt-5  background-cloud">
+  <div class="d-flex">
+    <div class="home-about-img">
+      <img src="./assets/pun_image/home-about-img.jpeg" class="img-about">
+      <img src="./assets/pun_image/home-about-cat.jpg" class="img-about img-cat-3d">
+    </div>
+    <div class="about-us pl-4">
+      <h2 class="font-weight-bold mb-4">About us</h2>
+      <p class="text-pun-secondary font-weight-500">With love for pets, we have started to build a first-class brand in the field of caring for little friends. Established in 2000, over 21 years, we have always prioritized the customer experience and the comfort of our little friends.</p>
+    </div>
   </div>
 </div>

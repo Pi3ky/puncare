@@ -11,6 +11,9 @@
     padding: 20px;
   }
 }
+.header-shadow{
+  box-shadow: 10px 10px 42px 0 rgb(8 15 52 / 6%);
+}
 .nav-link{
   font-size: 20px;
   font-weight: 500;
@@ -18,4 +21,8 @@
 
 .bg-pink{
   background-color: #fffaf6;
+}
+
+.nav-link.active, .nav-link:hover {
+  color: #f97561 !important;
 }

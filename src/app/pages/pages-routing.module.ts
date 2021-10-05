@@ -8,6 +8,10 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
+    path: 'services',
+    loadChildren: () => import('./services/services.module').then(m => m.ServicesModule)
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: "full",
