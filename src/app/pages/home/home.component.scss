@@ -19,6 +19,8 @@
 .corner-absolute{
   position: absolute;
   bottom: -3px;
+  left: 0;
+  right: 0;
   img {
     width: 50vw;
   }
@@ -108,4 +110,7 @@
   p{
     line-height: 1.889em;
   }
+}
+.box-about{
+  padding: 80px 0 70px 0;
 }

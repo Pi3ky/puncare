@@ -8,8 +8,6 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 
 body {
   font-family: 'Poppins', sans-serif;
-  height: 100%;
-  overflow-x: hidden;
 }
 .cursor-pointer{
   cursor: pointer;
@@ -26,4 +24,11 @@ body {
 }
 .text-pun-secondary {
   color: #817d7d;
+}
+
+
+// Carousel
+.owl-theme .owl-nav [class*=owl-]{
+  padding: 5px 12px;
+  border-radius: 4px;
 }
