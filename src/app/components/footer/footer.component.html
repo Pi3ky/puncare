@@ -1,0 +1,90 @@
+<div class="block-footer">
+  <div class="container border-bot-pun pb-5">
+    <div class="row">
+      <div class="col-12 col-md-4">
+        <a routerLink="page/home" routerLinkActive="active" class="text-logo">
+          <img src="./assets/pun_image/punshop.png" width="50">
+          <label class="ml-3 mb-0 cursor-pointer">Pun shop</label>
+        </a>
+        <p class="slogan-quote mt-3">Your satisfaction is our goal</p>
+        <div class="social-connect">
+          <a href="https://www.facebook.com/khangpm2" class="circle-social">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.instagram.com/khangpm1/?hl=en" class="circle-social">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.youtube.com/channel/UCETMyOlDl1WM1Kj-MlDcyiQ" class="circle-social">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://github.com/Pi3ky/punshop" class="circle-social">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/khang-bui-dinh-126773202/" class="circle-social">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
+      <div class="col-12 col-md-8 col-lg-4 d-flex">
+        <!-- Menus -->
+        <div class="footer-menu-wrap">
+          <label class="menu-title">Menu</label>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <a routerLink="pages/home">Home</a>
+            </li>
+            <li class="list-group-item">
+              <a routerLink="pages/about">About us</a>
+            </li>
+            <li class="list-group-item">
+              <a routerLink="pages/services">Services</a>
+            </li>
+            <li class="list-group-item">
+              <a routerLink="pages/products">Products</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div class="footer-menu-wrap ml-auto">
+          <label class="menu-title">Services</label>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <a>Pet visit</a>
+            </li>
+            <li class="list-group-item">
+              <a>Pet bath</a>
+            </li>
+            <li class="list-group-item">
+              <a>Pet grooming</a>
+            </li>
+            <li class="list-group-item">
+              <a>Flea treatment</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4">
+        <h2 class="font-weight-bold">Contact us</h2>
+        <div class="block-contact">
+          <p>
+            <i class="fas fa-map-marker-alt mr-2"></i>
+            <label class="text-pun-secondary mb-0">55, Giai phong StreetHanoi City, Vietnam</label>
+          </p>
+          <p>
+            <i class="fas fa-envelope mr-2"></i>
+            <a href="mailto:chocopie.nuce@gmail.com"  class="text-pun-secondary">chocopie.nuce@gmail.com</a>
+          </p>
+          <p>
+            <i class="fas fa-phone-alt mr-2"></i>
+            <a href="tel:+84386624545"  class="text-pun-secondary">0386624545</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container d-flex pt-4">
+    <div class="text-pun-secondary">Copyright © Pun shop</div>
+    <div class="text-pun-secondary ml-auto">{{now | date : 'dd - MM - yyy, hh:mm:s a'}}</div>
+  </div>
+</div>
