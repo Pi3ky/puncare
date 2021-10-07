@@ -1,1 +1,89 @@
-<p>services works!</p>
+<div class="container pt-5">
+  <div class="text-center mb-5">
+    <h1 class="font-weight-bold">
+      Services
+    </h1>
+    <h5 class="text-pun-secondary">We love animals, and will love your pets the way you love them. Here we have the best services for little friends</h5>
+  </div>
+  <div class="row">
+    <ng-container *ngFor="let service of listServices">
+      <div class=" col-12 col-lg-6">
+        <a class="box-service" (click)="openService(service)">
+          <img class="box-img" [src]="service.image" [alt]="service.title">
+          <div class="d-flex flex-column">
+            <h3 class="font-weight-bold">{{service.title}}</h3>
+            <p>{{service.description}}</p>
+            <div class="d-flex mt-auto">
+              <span class="badge badge-pun-secondary mr-4">{{service.price | currency}}</span>
+              <span class="badge badge-pun-secondary">{{service.time}}</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<!-- box contact -->
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12 col-md-4">
+      <h1 class="title-contact">Contact us</h1>
+      <p>Our products and services, are made for your and your little friend's satisfaction</p>
+      <div class="block-contact">
+        <p class="text-pun-secondary">
+          <i class="fas fa-map-marker-alt mr-2"></i> 55, Giai phong StreetHanoi City, Vietnam
+        </p>
+        <p class="text-pun-secondary">
+          <i class="fas fa-envelope mr-2"></i>
+          <a href="mailto:chocopie.nuce@gmail.com"  class="text-pun-secondary">chocopie.nuce@gmail.com</a>
+        </p>
+        <p class="text-pun-secondary">
+          <i class="fas fa-phone-alt mr-2"></i>
+          <a href="tel:+84386624545"  class="text-pun-secondary">0386624545</a>
+        </p>
+      </div>
+    </div>
+    <div class="col-12 col-md-8">
+      <div class="card-contact border">
+        <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+          <div class="row form-group">
+            <div class="col-12 col-md-6">
+              <label class="title-input-lg">Name</label>
+              <input type="text" name="name" class="form-control input-contact" placeholder="Enter your name here" required>
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="title-input-lg">Email Address</label>
+              <input type="email" name="email" class="form-control input-contact" placeholder="Abc.123@punshop.vn">
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-12 col-md-6">
+              <label class="title-input-lg">Phone number</label>
+              <input type="tel" name="name" class="form-control input-contact" placeholder="(+84) 3578164984" required>
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="title-input-lg">Service</label>
+              <ng-select [items]="listServices" bindValue="id" class="custom-lg-select" [placeholder]="'Ex: Pet visit'" name="service" bindLabel="title" (change)="selectService($event)"></ng-select>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-12 col-md-6">
+              <label class="title-input-lg">Visit date</label>
+              <input type="tel" name="name" class="form-control input-contact" >
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="title-input-lg">Schedule</label>
+              <input type="tel" name="name" class="form-control input-contact" >
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="title-input-lg">Message</label>
+            <textarea placeholder="Your message here ..." class="form-control input-contact form-textarea"></textarea>
+          </div>
+          <button class="btn btn-pun-danger btn-lg btn-contact my-4">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
