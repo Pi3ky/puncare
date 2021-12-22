@@ -3,7 +3,7 @@
   "version": "1.1",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"ng serve\" \"json-server --watch db.json\"",
+    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -28,6 +28,7 @@
     "ngx-bootstrap": "^5.5.0",
     "ngx-owl-carousel-o": "^6.0.0",
     "ngx-spinner": "^8.1.0",
+    "ngx-toastr": "^11.3.3",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"

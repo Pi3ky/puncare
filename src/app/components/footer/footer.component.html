@@ -6,7 +6,7 @@
           <img src="./assets/pun_image/punshop.png" width="50">
           <label class="ml-3 mb-0 cursor-pointer">Pun shop</label>
         </a>
-        <p class="slogan-quote mt-3">Your satisfaction is our goal</p>
+        <p class="slogan-quote mt-3">Sự hài lòng của bạn là mục tiêu của chúng tôi</p>
         <div class="social-connect">
           <a href="https://www.facebook.com/khangpm2" class="circle-social">
             <i class="fab fa-facebook-f"></i>
@@ -28,56 +28,47 @@
       <div class="col-12 col-md-8 col-lg-4 d-flex">
         <!-- Menus -->
         <div class="footer-menu-wrap">
-          <label class="menu-title">Menu</label>
+          <label class="menu-title">Danh sách</label>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
-              <a routerLink="pages/home">Home</a>
+              <a routerLink="pages/home">Trang chủ</a>
             </li>
             <li class="list-group-item">
-              <a routerLink="pages/about">About us</a>
+              <a routerLink="pages/about">Giới thiệu</a>
             </li>
             <li class="list-group-item">
-              <a routerLink="pages/services">Services</a>
+              <a routerLink="pages/services">Dịch vụ</a>
             </li>
             <li class="list-group-item">
-              <a routerLink="pages/products">Products</a>
+              <a routerLink="pages/products">Sản phẩm</a>
             </li>
           </ul>
         </div>
 
         <!-- Services -->
         <div class="footer-menu-wrap ml-auto">
-          <label class="menu-title">Services</label>
+          <label class="menu-title">Dịch vụ</label>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <a>Pet visit</a>
-            </li>
-            <li class="list-group-item">
-              <a>Pet bath</a>
-            </li>
-            <li class="list-group-item">
-              <a>Pet grooming</a>
-            </li>
-            <li class="list-group-item">
-              <a>Flea treatment</a>
+            <li class="list-group-item" *ngFor="let service of services">
+              <a>{{service.title}}</a>
             </li>
           </ul>
         </div>
       </div>
       <div class="col-12 col-lg-4">
-        <h2 class="font-weight-bold">Contact us</h2>
+        <h2 class="font-weight-bold">Liên hệ</h2>
         <div class="block-contact">
-          <p>
+          <p class="text-break text-pun-secondary">
             <i class="fas fa-map-marker-alt mr-2"></i>
-            <label class="text-pun-secondary mb-0">55, Giai phong StreetHanoi City, Vietnam</label>
+            {{shop_address.street + ', ' + shop_address.district}}
           </p>
           <p>
             <i class="fas fa-envelope mr-2"></i>
-            <a href="mailto:chocopie.nuce@gmail.com"  class="text-pun-secondary">chocopie.nuce@gmail.com</a>
+            <a href="mailto:chocopie.nuce@gmail.com" class="text-pun-secondary">chocopie.nuce@gmail.com</a>
           </p>
           <p>
             <i class="fas fa-phone-alt mr-2"></i>
-            <a href="tel:+84386624545"  class="text-pun-secondary">0386624545</a>
+            <a href="tel:+84386624545" class="text-pun-secondary">0386624545</a>
           </p>
         </div>
       </div>

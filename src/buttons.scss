@@ -8,6 +8,29 @@
     background-color: #fffb00;
     color: #f97561 !important;
     transition: all 0.3s ease;
-    transform: translateY(-10px);
+    transform: translateY(-5px);
   }
+}
+
+.btn-pun-secondary{
+  background-color: #fff;
+  color: #817d7d;
+  padding: 24px 10px;
+  font-weight: 600;
+  border-radius: 20px;
+  border: 1px solid #817d7d;
+  width: 240px;
+  &:hover {
+    color:  #f97561;
+    transition: 0.2s all ease;
+  }
+  &.active {
+    background-color:  #f97561;
+    border-color:  #f97561;
+    color: #fff;
+  }
+}
+
+.btn:focus {
+  box-shadow: none;
 }

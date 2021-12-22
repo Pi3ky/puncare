@@ -4,5 +4,7 @@ export interface Services {
   description: string,
   image: string,
   price: string,
+  about: string,
+  includes: string[];
   time: string
 }

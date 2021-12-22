@@ -5,6 +5,7 @@ import { finalize } from "rxjs/operators";
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Services } from 'src/app/common/type';
 import { Router } from '@angular/router';
+import { open_hours, shop_address } from 'src/app/common/const';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,8 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   listServices: Services[] = [];
+  open_hours = open_hours;
+  shop_address = shop_address;
   constructor(
     private pageService: PagesService,
     private spinner: NgxSpinnerService,

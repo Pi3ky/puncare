@@ -3,9 +3,9 @@
     <div class=" row">
       <div class="col-12 col-md-6 d-flex align-items-center">
         <div class="quote">
-          <h1>Your satisfaction is our goal</h1>
-          <div>Our products and services, are made for your and your little friend's satisfaction</div>
-          <a class="btn btn-lg btn-pun-danger mt-4" routerLink="pages/contact" routerLinkActive="active">Contact us</a>
+          <h1>Sự hài lòng của bạn là mục tiêu của chúng tôi</h1>
+          <div>Sản phẩm và dịch vụ của chúng tôi là để mang đến cho bạn và những người bạn nhỏ của bạn sự hài lòng</div>
+          <a class="btn btn-lg btn-pun-danger mt-4" routerLink="pages/contact" routerLinkActive="active">Liên hệ</a>
         </div>
       </div>
       <div class="col-12 col-md-6">
@@ -28,7 +28,7 @@
           <i class="fas fa-at"></i>
         </div>
         <div class="content-contact">
-          <h4 class="font-weiht-bold">Contact us</h4>
+          <h4 class="font-weiht-bold">Liên hệ</h4>
           <label>
             <a href="mailto:chocopie.nuce@gmail.com"  class="text-pun-secondary">chocopie.nuce@gmail.com</a>
           </label>
@@ -43,10 +43,10 @@
           <i class="fas fa-clock"></i>
         </div>
         <div class="content-contact">
-          <h4 class="font-weiht-bold">Open Hours</h4>
-          <label>Mon - Fri: <span class="text-pun-secondary">8:00 AM to 5:00 PM</span></label>
-          <label>Saturday: <span class="text-pun-secondary">9:00 AM to 3:00 PM</span></label>
-          <label>Sunday: <span class="text-pun-secondary">9:00 AM to 2:00 PM</span></label>
+          <h4 class="font-weiht-bold">Giờ mở cửa</h4>
+          <label class="d-block">Thứ hai - Thứ sáu: <span class="text-pun-secondary">{{open_hours.weekly}}</span></label>
+          <label class="d-block">Saturday: <span class="text-pun-secondary">{{open_hours.weekend}}</span></label>
+          <label class="d-block">Sunday: <span class="text-pun-secondary">{{open_hours.weekend}}</span></label>
         </div>
       </div>
       <!-- Location -->
@@ -55,9 +55,9 @@
           <i class="fas fa-map-marker-alt"></i>
         </div>
         <div class="content-contact">
-          <h4 class="font-weiht-bold">Location</h4>
-          <label>55, Giai phong Street</label>
-          <label>Hanoi City, Vietnam</label>
+          <h4 class="font-weiht-bold">Địa chỉ</h4>
+          <label>{{shop_address.street}}</label>
+          <label>{{shop_address.district}}</label>
         </div>
       </div>
     </div>
@@ -69,7 +69,7 @@
 <!-- Preview services -->
 <div class="container mb-5">
   <div class="services">
-    <h2 class="mb-5 font-weight-bold">Our services</h2>
+    <h2 class="mb-5 font-weight-bold">Dịch vụ</h2>
     <owl-carousel-o [options]="customOptions">
       <ng-template carouselSlide *ngFor="let service of listServices">
         <a class="box-service" (click)="openService(service)">
@@ -78,7 +78,7 @@
             <h3 class="font-weight-bold">{{service.title}}</h3>
             <p>{{service.description}}</p>
             <div class="d-flex mt-auto">
-              <span class="badge badge-pun-secondary mr-4">{{service.price | currency}}</span>
+              <span class="badge badge-pun-secondary mr-4">{{service.price | number : '4.0-2'}} VNĐ</span>
               <span class="badge badge-pun-secondary">{{service.time}}</span>
             </div>
           </div>
@@ -96,21 +96,21 @@
       <img src="./assets/pun_image/home-about-cat.jpg" class="img-about img-cat-3d">
     </div>
     <div class="about-us pl-4">
-      <h2 class="font-weight-bold mb-4">About us</h2>
-      <p class="text-pun-secondary font-weight-500">With love for pets, we have started to build a first-class brand in the field of caring for little friends. Established in 2000, over 21 years, we have always prioritized the customer experience and the comfort of our little friends.</p>
+      <h2 class="font-weight-bold mb-4">Giới thiệu</h2>
+      <p class="text-pun-secondary font-weight-500">Với tình yêu dành cho thú cưng, chúng tôi đã bắt đầu xây dựng thương hiệu hạng nhất trong lĩnh vực chăm sóc các bạn nhỏ. Được thành lập vào năm 2000, hơn 21 năm, chúng tôi luôn ưu tiên trải nghiệm của khách hàng và sự thoải mái của những người bạn nhỏ của chúng tôi.</p>
       <p class="d-flex align-items-center">
         <img src="./assets/_icon/check.png" width="30" class="mr-4">
-        <label class="mb-0 font-weight-bold">Over 20 years of experience</label>
+        <label class="mb-0 font-weight-bold">Trên 20 năm kinh nghiệm</label>
       </p>
       <p class="d-flex align-items-center">
         <img src="./assets/_icon/check.png" width="30" class="mr-4">
-        <label class="mb-0 font-weight-bold">15 talented vets ready to help you</label>
+        <label class="mb-0 font-weight-bold">15 bác sĩ thú y tài năng sẵn sàng giúp bạn</label>
       </p>
       <p class="d-flex align-items-center">
         <img src="./assets/_icon/check.png" width="30" class="mr-4">
-        <label class="mb-0 font-weight-bold">High-quality services only</label>
+        <label class="mb-0 font-weight-bold">Dịch vụ chất lượng cao</label>
       </p>
-      <a class="btn btn-lg btn-pun-danger mt-4" routerLink="pages/about" routerLinkActive="active">More about us</a>
+      <a class="btn btn-lg btn-pun-danger mt-4" routerLink="pages/about" routerLinkActive="active">Tìm hiểu thêm</a>
     </div>
   </div>
 </div>

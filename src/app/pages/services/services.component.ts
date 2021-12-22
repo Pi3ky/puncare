@@ -3,7 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs/operators';
+import { shop_address } from 'src/app/common/const';
 import { Services } from 'src/app/common/type';
+import { AlertService } from 'src/app/services/alert.service';
 import { PagesService } from '../pages.service';
 
 @Component({
@@ -13,12 +15,31 @@ import { PagesService } from '../pages.service';
 })
 export class ServicesComponent implements OnInit {
   listServices: Services[] = [];
-  loginForm: FormGroup;
+  dateConfig = {
+    containerClass: 'theme-red',
+    isAnimated: true,
+    minDate: new Date(),
+    showWeekNumbers: false,
+  }
+  contactForm: FormGroup;
+  shop_address = shop_address;
   constructor(
-    private pageService: PagesService,
+    public pageService: PagesService,
     private spinner: NgxSpinnerService,
+    private fb: FormBuilder,
+    private alertService: AlertService,
     private router: Router,
-  ) { }
+  ) {
+    this.contactForm = this.fb.group({
+      name: ['', Validators.required],
+      phone: ['', Validators.required],
+      email: ['', Validators.email],
+      service: [null],
+      date_visit: [new Date()],
+      time_visit: [null],
+      msg: ['']
+    });
+   }
 
   ngOnInit() {
     this.getService();
@@ -51,8 +72,40 @@ export class ServicesComponent implements OnInit {
     console.log(evt)
   }
 
-  onSubmit(){
+  onSubmit(contactForm){
 
+    // this.alertService.error('Win')
+
+    if(contactForm.invalid){
+      this.markFormGroupTouched(contactForm)
+      return;
+    } else {
+      this.spinner.show();
+      const body = {
+        ...contactForm.value,
+        date_visit: new Date(contactForm.value.date_visit).getTime()
+      }
+      console.log(body)
+      this.pageService.sendContact(body).pipe(finalize(() => this.spinner.hide())).subscribe(
+        res => {
+          // this.
+        }
+      )
+    }
+  }
+
+  /**
+   * Marks all controls in a form group as touched
+   * @param formGroup - The form group to touch
+  */
+   private markFormGroupTouched(formGroup) {
+    (<any>Object).values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+
+      if (control.controls) {
+        this.markFormGroupTouched(control);
+      }
+    });
   }
 
 }

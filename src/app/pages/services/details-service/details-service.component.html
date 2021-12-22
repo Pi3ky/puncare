@@ -1,1 +1,50 @@
-<p>details-service works!</p>
+<!-- <div class="background-cloud"> -->
+  <div class="container py-5" *ngIf="service">
+    <div class="row row-eq-height">
+      <div class="col-12 col-lg-8">
+        <div class="border-bottom">
+          <img [src]="service.image" alt="" width="100" height="100" class="mb-5">
+          <h1 class="font-weight-bold mb-4">{{service.title}}</h1>
+          <p class="mb-4 text-pun-secondary">{{service.description}}</p>
+          <div class="d-flex mb-5">
+            <span class="badge badge-pun-secondary mr-4">{{service.price | currency}}</span>
+            <span class="badge badge-pun-secondary">{{service.time}}</span>
+          </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between flex-wrap pt-5">
+          <button class="btn btn-lg btn-pun-secondary" [class.active]="tabView === 'about'" (click)="changeView('about')">About</button>
+          <button class="btn btn-lg btn-pun-secondary" [class.active]="tabView === 'included'" (click)="changeView('included')">What's included?</button>
+        </div>
+        <div class="mt-5">
+          <p class="text-pun-secondary content-view" *ngIf="tabView === 'about'">{{service.about}}</p>
+          <ul class="text-pun-secondary content-view" *ngIf="tabView === 'included'">
+            <li *ngFor="let item of service.includes">{{item}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4">
+        <div class="card-contact border">
+          <h4 class="font-weight-bold">Schedule a visit</h4>
+          <form [formGroup]="bookingForm" (ngSubmit)="submitBooking(bookingForm)">
+            <div class="form-group">
+              <input type="text" formControlName="name" class="form-control input-contact" placeholder="Full name" required>
+            </div>
+            <div class="form-group">
+              <input type="text" formControlName="phone" class="form-control input-contact" placeholder="Phone number" required>
+            </div>
+            <div class="form-group">
+              <ng-select [items]="listServices" bindValue="id" class="custom-lg-select" [placeholder]="'Select your service'" formControlName="service" bindLabel="title"></ng-select>
+            </div>
+            <div class="form-group">
+              <input type="text" formControlName="date_visit" placeholder="Enter the date" class="form-control input-contact" [bsConfig]="dateConfig" bsDatepicker >
+            </div>
+            <div class="form-group">
+              <ng-select [items]="pageService.schedules" [clearable]="false" [searchable]="false" bindValue="id" class="custom-lg-select" [placeholder]="'Select time'" formControlName="time_visit" bindLabel="name"></ng-select>
+            </div>
+            <button class="btn btn-lg w-100 btn-pun-danger">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- </div> -->
