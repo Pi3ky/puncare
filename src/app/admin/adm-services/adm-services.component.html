@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="table-responsive">
+    <table class="table table-borderless table-striped table-hover">
+      <thead>
+        <th scope="col">#</th>
+        <th scope="col">Dịch vụ</th>
+        <th scope="col">Giá</th>
+        <th scope="col"></th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listServices; let index = index">
+          <td>{{index + 1}}</td>
+          <td>{{item.title}}</td>
+          <td>
+            <ng-container *ngIf="item.price; else noPrice">
+              <span>{{item.price | number : "4.0-2"}} VNĐ</span>
+            </ng-container>
+            <ng-template #noPrice>
+              <span class="text-primary">Liên hệ</span>
+            </ng-template>
+          </td>
+          <td class="text-right">
+            <button class="btn btn-sm bg-white shadow-sm mx-1" (click)="editService(item)">
+              <i class="fas fa-edit text-primary"></i>
+            </button>
+            <button class="btn btn-sm bg-white shadow-sm mx-1" (click)="removeService(item)">
+              <i class="fas fa-trash-alt text-dark"></i>
+            </button>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

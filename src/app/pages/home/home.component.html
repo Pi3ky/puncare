@@ -30,10 +30,10 @@
         <div class="content-contact">
           <h4 class="font-weiht-bold">Liên hệ</h4>
           <label>
-            <a href="mailto:chocopie.nuce@gmail.com"  class="text-pun-secondary">chocopie.nuce@gmail.com</a>
+            <a href="{{shop_address.email}}"  class="text-pun-secondary">{{shop_address.email}}</a>
           </label>
           <label>
-            <a href="tel:+84386624545"  class="text-pun-secondary">0386624545</a>
+            <a href="tel: {{shop_address.phone}}"  class="text-pun-secondary">{{shop_address.phone}}</a>
           </label>
         </div>
       </div>
@@ -78,7 +78,12 @@
             <h3 class="font-weight-bold">{{service.title}}</h3>
             <p>{{service.description}}</p>
             <div class="d-flex mt-auto">
-              <span class="badge badge-pun-secondary mr-4">{{service.price | number : '4.0-2'}} VNĐ</span>
+              <ng-container *ngIf="service.price; else noPrice">
+                <span class="badge badge-pun-secondary mr-4">{{service.price | number : "4.0-2"}} VNĐ</span>
+              </ng-container>
+              <ng-template #noPrice>
+                <span class="badge badge-pun-secondary mr-4">Liên hệ</span>
+              </ng-template>
               <span class="badge badge-pun-secondary">{{service.time}}</span>
             </div>
           </div>

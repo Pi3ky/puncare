@@ -6,6 +6,7 @@ import { finalize } from 'rxjs/operators';
 import { shop_address } from 'src/app/common/const';
 import { Services } from 'src/app/common/type';
 import { AlertService } from 'src/app/services/alert.service';
+import { PublicService } from 'src/app/services/public.service';
 import { PagesService } from '../pages.service';
 
 @Component({
@@ -26,8 +27,8 @@ export class ServicesComponent implements OnInit {
   constructor(
     public pageService: PagesService,
     private spinner: NgxSpinnerService,
+    public publicService: PublicService,
     private fb: FormBuilder,
-    private alertService: AlertService,
     private router: Router,
   ) {
     this.contactForm = this.fb.group({
@@ -42,17 +43,24 @@ export class ServicesComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.getService();
+    if (this.publicService.services.length) {
+      this.listServices = this.publicService.services;
+    } else {
+      this.getServices();
+    }
   }
 
   /**
    * Get data services
    */
-  getService(){
+  getServices(){
     this.spinner.show();
-    this.pageService.getService().pipe(finalize(() => this.spinner.hide())).subscribe(
+    this.publicService.getServices().pipe(finalize(() => this.spinner.hide())).subscribe(
       res => {
         this.listServices = res;
+      },
+      err => {
+        console.error(err);
       }
     )
   }
@@ -62,7 +70,8 @@ export class ServicesComponent implements OnInit {
    * @param service
    */
   openService(service: Services){
-    this.router.navigate(['/pages/services', service.id])
+    console.log(service._id);
+    this.router.navigate(['/pages/services', service._id])
   }
 
   /**

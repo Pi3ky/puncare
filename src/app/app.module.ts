@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { HttpClientModule, } from '@angular/common/http';
 import { FooterComponent } from './components/footer/footer.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +18,7 @@ import { FooterComponent } from './components/footer/footer.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    BsDropdownModule.forRoot(),
     RouterModule,
     HttpClientModule,
     NgxSpinnerModule,

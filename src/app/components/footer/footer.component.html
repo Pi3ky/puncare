@@ -4,7 +4,7 @@
       <div class="col-12 col-md-4">
         <a routerLink="page/home" routerLinkActive="active" class="text-logo">
           <img src="./assets/pun_image/punshop.png" width="50">
-          <label class="ml-3 mb-0 cursor-pointer">Pun shop</label>
+          <label class="ml-3 mb-0 cursor-pointer font-weight-bold">Pun Care</label>
         </a>
         <p class="slogan-quote mt-3">Sự hài lòng của bạn là mục tiêu của chúng tôi</p>
         <div class="social-connect">
@@ -49,7 +49,7 @@
         <div class="footer-menu-wrap ml-auto">
           <label class="menu-title">Dịch vụ</label>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item" *ngFor="let service of services">
+            <li class="list-group-item" *ngFor="let service of publicService.services">
               <a>{{service.title}}</a>
             </li>
           </ul>
@@ -64,11 +64,11 @@
           </p>
           <p>
             <i class="fas fa-envelope mr-2"></i>
-            <a href="mailto:chocopie.nuce@gmail.com" class="text-pun-secondary">chocopie.nuce@gmail.com</a>
+            <a href="mailto:{{shop_address.email}}" class="text-pun-secondary">{{shop_address.email}}</a>
           </p>
           <p>
             <i class="fas fa-phone-alt mr-2"></i>
-            <a href="tel:+84386624545" class="text-pun-secondary">0386624545</a>
+            <a href="tel:{{shop_address.phone}}" class="text-pun-secondary">{{shop_address.phone}}</a>
           </p>
         </div>
       </div>

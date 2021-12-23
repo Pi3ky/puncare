@@ -42,6 +42,17 @@ body {
 .form-control.ng-touched.ng-invalid, .ng-select.ng-touched.ng-invalid {
   border: 1px solid #f97561;
 }
+
+.form-control {
+  &:focus {
+    box-shadow: none;
+    border-color: #36f;
+  }
+  &:hover {
+    background-color: rgb(240, 240, 240);
+  }
+}
+
 .input-contact{
   height: 60px;
   border-radius: 10px;
@@ -101,10 +112,32 @@ body {
         padding-left: 19px;
         padding-right: 20px;
         transform: translateY(-50%);
+        input {
+          padding-left: 0;
+        }
       }
     }
   }
+
+  &.ng-select-opened{
+    .ng-select-container {
+      border-color: #36f;
+    }
+  }
+  &.ng-select-focused:not(.ng-select-opened){
+    .ng-select-container {
+      box-shadow: none;
+      border-color: #36f;
+    }
+  }
+  &:hover {
+    .ng-select-container {
+      background-color: rgb(240, 240, 240);
+    }
+  }
 }
+
+
 
 // Card
 .card-contact{

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
 import { shop_address } from 'src/app/common/const';
-import { Services } from 'src/app/common/type';
 import { PagesService } from 'src/app/pages/pages.service';
+import { PublicService } from 'src/app/services/public.service';
 
 @Component({
   selector: 'app-footer',
@@ -12,8 +12,7 @@ import { PagesService } from 'src/app/pages/pages.service';
 export class FooterComponent implements OnInit {
   now = new Date();
   shop_address = shop_address;
-  services: Services[] = [];
-  constructor(private pageService: PagesService,) { }
+  constructor(public publicService: PublicService) { }
 
   ngOnInit() {
     interval(1000).subscribe(
@@ -25,9 +24,9 @@ export class FooterComponent implements OnInit {
   }
 
   getServices(){
-    this.pageService.getService().subscribe(
+    this.publicService.getServices().subscribe(
       res => {
-        this.services = res;
+        this.publicService.services = res;
       },
       err => {
         console.error(err)

@@ -1,0 +1,43 @@
+<div class="container">
+  <h2>{{service.title}}</h2>
+  <form (ngSubmit)="updateService(form)" #form="ngForm">
+    <div class="row form-group">
+      <div class="col-6">
+        <label class="font-weight-bold">Tên dịch vụ: </label>
+        <input type="text" name="title" [(ngModel)]="service.title" class="form-control input-contact" required>
+      </div>
+      <div class="col-6">
+        <label class="font-weight-bold">Giá: </label>
+        <input type="number" name="phone" [(ngModel)]="service.price" class="form-control input-contact" step="1000">
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-6">
+        <label class="font-weight-bold">Ảnh: </label>
+        <input type="text" name="image" [(ngModel)]="service.image" class="form-control input-contact" required>
+      </div>
+      <div class="col-6">
+        <label class="font-weight-bold">Thời lượng: </label>
+        <input type="text" name="time" [(ngModel)]="service.time" class="form-control input-contact">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="font-weight-bold">Giới thiệu: </label>
+      <textarea type="text" name="description" [(ngModel)]="service.description" class="form-control input-contact"></textarea>
+    </div>
+    <div class="form-group">
+      <label class="font-weight-bold">Mô tả tổng quát: </label>
+      <textarea type="text" name="about" [(ngModel)]="service.about" class="form-control input-contact"></textarea>
+    </div>
+    <div class="form-group">
+      <label class="font-weight-bold">Chi tiết dịch vụ: </label>
+      <ng-container *ngFor="let item of service.details">
+        <!-- <input type="text" name="about" class="form-control input-contact mb-2" [(ngModel)]="item"> -->
+        <p>{{item}}</p>
+      </ng-container>
+    </div>
+
+    <button class="btn btn-lg btn-block btn-pun-danger">Cập nhật</button>
+  </form>
+
+</div>

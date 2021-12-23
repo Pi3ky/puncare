@@ -9,3 +9,5 @@ export const open_hours = {
   weekly: "8h - 20h30",
   weekend: "9h - 17h"
 }
+
+export const urlApi = 'http://localhost:3000';

@@ -1,10 +1,10 @@
 export interface Services {
-  id: string,
+  _id: string,
   title: string,
   description: string,
   image: string,
   price: string,
   about: string,
-  includes: string[];
+  details: string[];
   time: string
 }

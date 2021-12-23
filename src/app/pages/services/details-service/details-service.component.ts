@@ -1,9 +1,11 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
 import { Services } from 'src/app/common/type';
 import { PagesService } from '../../pages.service';
+import * as moment from 'moment';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { PublicService } from 'src/app/services/public.service';
 @Component({
   selector: 'app-details-service',
   templateUrl: './details-service.component.html',
@@ -11,41 +13,55 @@ import { PagesService } from '../../pages.service';
 })
 export class DetailsServiceComponent implements OnInit {
   tabView = 'about';
-  bookingForm: FormGroup;
   listServices: Services[] = [];
   dateConfig = {
     containerClass: 'theme-red',
     isAnimated: true,
     minDate: new Date(),
     showWeekNumbers: false,
+    dateInputFormat: 'DD/MM/YYYY',
   }
+  bookingForm = {
+    name: "",
+    phone: "",
+    date_visit: "",
+    time_visit: null,
+    service: ""
+  };
   service: Services;
   constructor(
     private route: ActivatedRoute,
     public pageService: PagesService,
-    private fb: FormBuilder,
+    private spinner: NgxSpinnerService,
+    public publicService: PublicService,
   ) {
-    this.bookingForm = this.fb.group({
-      name: ['', Validators.required],
-      phone: ['', Validators.required],
-      email: ['', Validators.email],
-      date_visit: [new Date()],
-      time_visit: [null],
-      service: [null],
-      msg: ['']
-    });
+
    }
 
   ngOnInit() {
     this.route.paramMap.pipe(
       map(params => params.get('id')),
-      switchMap(id => this.pageService.getServiceDetail({id: id}))
-    ).subscribe(services => {
-      this.service = services[0];
-      this.bookingForm.get('service').setValue(this.service.id);
-      this.getServices();
-      console.log(this.service)
+      switchMap(id => this.publicService.getServiceDetail(id))
+    ).subscribe(service => {
+      this.service = service;
+      this.bookingForm.service = this.service._id;
+      if (this.publicService.services.length) {
+        this.listServices = this.publicService.services;
+      } else {
+        this.getServices();
+      }
     })
+  }
+
+  getDefaultForm(){
+    return {
+      name: "",
+      phone: "",
+      email: "",
+      date_visit: "",
+      time_visit: null,
+      service: this.service._id
+    }
   }
 
   changeView(type){
@@ -56,7 +72,7 @@ export class DetailsServiceComponent implements OnInit {
    * Get data services
    */
   getServices(){
-    this.pageService.getService().subscribe(
+    this.publicService.getServices().subscribe(
       res => {
         this.listServices = res;
       }
@@ -64,7 +80,13 @@ export class DetailsServiceComponent implements OnInit {
   }
 
   submitBooking(form){
-    console.log(form)
+    this.spinner.show();
+    if (this.bookingForm.date_visit) {
+      this.bookingForm.date_visit = moment(this.bookingForm.date_visit).format("DDMMYYYY");
+    }
+    console.log(this.bookingForm)
+    this.bookingForm = this.getDefaultForm();
+    form.reset();
   }
 
 }

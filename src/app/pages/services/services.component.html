@@ -13,7 +13,12 @@
               <h3 class="font-weight-bold">{{service.title}}</h3>
               <p>{{service.description}}</p>
               <div class="d-flex mt-auto">
-                <span class="badge badge-pun-secondary mr-4">{{service.price | number : '4.0-2'}} VNĐ</span>
+                <ng-container *ngIf="service.price; else noPrice">
+                  <span class="badge badge-pun-secondary mr-4">{{service.price | number : "4.0-2"}} VNĐ</span>
+                </ng-container>
+                <ng-template #noPrice>
+                  <span class="badge badge-pun-secondary mr-4">Liên hệ</span>
+                </ng-template>
                 <span class="badge badge-pun-secondary" *ngIf="service?.time">{{service.time}}</span>
               </div>
             </div>

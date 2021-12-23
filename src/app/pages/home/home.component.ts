@@ -6,6 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Services } from 'src/app/common/type';
 import { Router } from '@angular/router';
 import { open_hours, shop_address } from 'src/app/common/const';
+import { PublicService } from 'src/app/services/public.service';
 
 @Component({
   selector: 'app-home',
@@ -17,8 +18,8 @@ export class HomeComponent implements OnInit {
   open_hours = open_hours;
   shop_address = shop_address;
   constructor(
-    private pageService: PagesService,
     private spinner: NgxSpinnerService,
+    public publicService: PublicService,
     private router: Router,
   ) { }
 
@@ -47,15 +48,19 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getService();
+    if (this.publicService.services.length) {
+      this.listServices = this.publicService.services;
+    } else {
+      this.getServices();
+    }
   }
 
   /**
    * Get data services
    */
-  getService(){
+  getServices(){
     this.spinner.show();
-    this.pageService.getService().pipe(finalize(() => this.spinner.hide())).subscribe(
+    this.publicService.getServices().pipe(finalize(() => this.spinner.hide())).subscribe(
       res => {
         this.listServices = res;
       }
@@ -67,7 +72,7 @@ export class HomeComponent implements OnInit {
    * @param service
    */
   openService(service: Services){
-    this.router.navigate(['/pages/services', service.id])
+    this.router.navigate(['/pages/services', service._id])
   }
 
 }
