@@ -11,11 +11,19 @@ export class PublicService {
   public services: Services[] = [];
   constructor(private http: HttpClient) { }
 
-  getServices(): Observable<any>{
-    return this.http.get<any>(`${urlApi}/api/services`);
+  getServices(param): Observable<any>{
+    return this.http.get<any>(`${urlApi}/api/services`, {params: param});
   }
 
   getServiceDetail(id): Observable<any>{
     return this.http.get<any>(`${urlApi}/api/services/${id}`)
+  }
+
+  getProducts(param): Observable<any>{
+    return this.http.get<any>(`${urlApi}/api/products`, {params: param});
+  }
+
+  getProductsDetail(id): Observable<any>{
+    return this.http.get<any>(`${urlApi}/api/products/${id}`)
   }
 }

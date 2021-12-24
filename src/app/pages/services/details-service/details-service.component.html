@@ -25,9 +25,7 @@
         </div>
         <div class="mt-5">
           <p class="text-pun-secondary content-view" *ngIf="tabView === 'about'">{{service.about}}</p>
-          <ul class="text-pun-secondary content-view" *ngIf="tabView === 'included'">
-            <li *ngFor="let item of service.details">{{item}}</li>
-          </ul>
+          <p class="text-pun-secondary content-view text-break" *ngIf="tabView === 'included'" [innerHTML]="service.details"></p>
         </div>
       </div>
       <div class="col-12 col-lg-4">

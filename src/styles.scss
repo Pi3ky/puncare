@@ -39,9 +39,17 @@ body {
 }
 
 // input
-.form-control.ng-touched.ng-invalid, .ng-select.ng-touched.ng-invalid {
+.form-search-md {
+  max-width: 400px;
+}
+.input-group-append .btn, .input-group-prepend .btn {
+  z-index: 1;
+}
+.form-control.ng-touched.ng-invalid {
   border: 1px solid #f97561;
 }
+
+
 
 .form-control {
   &:focus {
@@ -66,6 +74,9 @@ body {
 }
 
 // Other
+.pointer {
+  cursor: pointer;
+}
 .box-service {
   border: 1px solid #e0dbdb;
   padding: 60px 40px;
@@ -90,6 +101,10 @@ body {
   padding: 16px 26px;
   font-size: 16px;
 }
+.badge-sm {
+  padding: 10px 25px;
+  font-size: 14px;
+}
 .badge-pun-secondary{
   background-color: #f2f0ef;
 }
@@ -101,6 +116,11 @@ body {
 }
 
 // selector
+.ng-select.ng-touched.ng-invalid {
+  .ng-select-container {
+    border: 1px solid #f97561;
+  }
+}
 .ng-select.custom-lg-select{
   .ng-select-container{
     height: 60px;

@@ -16,12 +16,12 @@
           <li class="nav-item mx-4"><a class="nav-link" href="#" routerLinkActive="active">Sản phẩm</a></li>
           <li dropdown #dropdown="bs-dropdown" class="dropdown">
             <a href="javascript:;" id="sub-menu" dropdownToggle aria-controls="sub-menu-dropdown" class="nav-link"
-              routerLinkActive="active">
+              routerLinkActive="active" routerLink="/admin">
               Admin <i class="fas fa-angle-down ml-1"></i>
             </a>
-            <ul id="sub-menu-dropdown" class="dropdown-menu mt-0 py-0" role="menu" aria-labelledby="sub-menu">
+            <ul id="sub-menu-dropdown" class="dropdown-menu mt-0 py-0 shadow border-0" role="menu" aria-labelledby="sub-menu">
               <li role="menuitem"><a class="dropdown-item" routerLink="/admin/services" routerLinkActive="active">Dịch vụ</a></li>
-              <li role="menuitem"><a class="dropdown-item" href="javascript:;" routerLinkActive="active">Sản phẩm</a></li>
+              <li role="menuitem"><a class="dropdown-item" routerLink="/admin/products" routerLinkActive="active">Sản phẩm</a></li>
               <li role="menuitem"><a class="dropdown-item" href="javascript:;" routerLinkActive="active">Đơn hàng</a></li>
               <li role="menuitem"><a class="dropdown-item" href="javascript:;" routerLinkActive="active">Lịch hẹn</a></li>
             </ul>

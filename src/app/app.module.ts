@@ -9,6 +9,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { HttpClientModule, } from '@angular/common/http';
 import { FooterComponent } from './components/footer/footer.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { NgxPermissionsModule } from 'ngx-permissions';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +20,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     BrowserModule,
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
+    NgxPermissionsModule.forRoot(),
     RouterModule,
     HttpClientModule,
     NgxSpinnerModule,

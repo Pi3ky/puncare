@@ -5,6 +5,6 @@ export interface Services {
   image: string,
   price: string,
   about: string,
-  details: string[];
+  details: string;
   time: string
 }

@@ -10,6 +10,11 @@
     transition: all 0.3s ease;
     transform: translateY(-5px);
   }
+  &.btn-static {
+    &:hover {
+      transform: translateY(0);
+    }
+  }
 }
 
 .btn-pun-secondary{
