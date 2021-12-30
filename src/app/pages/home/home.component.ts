@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   listServices: Services[] = [];
   open_hours = open_hours;
   shop_address = shop_address;
+  totalItems = 0;
   constructor(
     private spinner: NgxSpinnerService,
     public publicService: PublicService,
@@ -60,9 +61,10 @@ export class HomeComponent implements OnInit {
    */
   getServices(){
     this.spinner.show();
-    this.publicService.getServices().pipe(finalize(() => this.spinner.hide())).subscribe(
+    this.publicService.getServices({}).pipe(finalize(() => this.spinner.hide())).subscribe(
       res => {
-        this.listServices = res;
+        this.listServices = res.data;
+        this.totalItems = res.total;
       }
     )
   }

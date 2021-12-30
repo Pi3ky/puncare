@@ -40,3 +40,7 @@ button:focus, .btn:focus {
   box-shadow: none;
   outline: none;
 }
+
+.btn:disabled, .btn.btn:disabled {
+  pointer-events: none;
+}

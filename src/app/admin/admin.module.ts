@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { EditorModule } from '@tinymce/tinymce-angular';
@@ -21,8 +20,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ModalModule.forRoot(),
     NgSelectModule,
     EditorModule,
-    ShareModule,
-    FormsModule
+    ShareModule
   ],
   entryComponents: []
 })

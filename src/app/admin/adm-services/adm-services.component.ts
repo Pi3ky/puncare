@@ -23,6 +23,7 @@ export class AdmServicesComponent implements OnInit {
   }
   sortName = 0;
   sortPrice = 0;
+  totalItems = 0;
   constructor(
     private publicService: PublicService,
     private spinner: NgxSpinnerService,
@@ -33,11 +34,7 @@ export class AdmServicesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.publicService.services.length) {
-      this.listServices = this.publicService.services;
-    } else {
-      this.getServices();
-    }
+    this.getServices();
   }
 
   /**
@@ -47,7 +44,8 @@ export class AdmServicesComponent implements OnInit {
     this.spinner.show();
     this.publicService.getServices(this.search).pipe(finalize(() => this.spinner.hide())).subscribe(
       res => {
-        this.listServices = res;
+        this.listServices = res.data;
+        this.totalItems = res.total;
       },
       err => {
         console.error(err);

@@ -19,4 +19,8 @@ export class PagesService {
     return this.http.post<any>(`${urlApi}/email-contact`, body)
   }
 
+  createOrder(body):Observable<any> {
+    return this.http.post<any>(`${urlApi}/api/orders/create`, body);
+  }
+
 }

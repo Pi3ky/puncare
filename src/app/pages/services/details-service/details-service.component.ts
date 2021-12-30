@@ -45,11 +45,7 @@ export class DetailsServiceComponent implements OnInit {
     ).subscribe(service => {
       this.service = service;
       this.bookingForm.service = this.service._id;
-      if (this.publicService.services.length) {
-        this.listServices = this.publicService.services;
-      } else {
-        this.getServices();
-      }
+      this.getServices();
     })
   }
 
@@ -72,9 +68,9 @@ export class DetailsServiceComponent implements OnInit {
    * Get data services
    */
   getServices(){
-    this.publicService.getServices().subscribe(
+    this.publicService.getServices({}).subscribe(
       res => {
-        this.listServices = res;
+        this.listServices = res.data;
       }
     )
   }

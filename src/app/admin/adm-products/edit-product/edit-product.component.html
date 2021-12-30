@@ -18,7 +18,6 @@
       </div>
       <div class="col-6">
         <label class="font-weight-bold">Phân loại: </label>
-        <!-- <input type="text" name="time" [(ngModel)]="product.type" class="form-control input-contact" required> -->
         <ng-select [items]="typeProduct" [(ngModel)]="product.type" [clearable]="false" [searchable]="false" bindValue="id" class="custom-lg-select" [placeholder]="'Chọn loại'" name="type" bindLabel="name" required></ng-select>
       </div>
     </div>

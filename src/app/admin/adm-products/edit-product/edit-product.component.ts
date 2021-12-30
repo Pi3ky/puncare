@@ -63,8 +63,44 @@ export class EditProductComponent implements OnInit {
     );
   }
 
+  createProduct() {
+    this.spinner.show();
+    this.adminService.createProduct(this.product).subscribe(
+      res => {
+        this.alertService.success('Thêm mới thành công!');
+        this.spinner.hide();
+      },
+      err => {
+        this.spinner.hide();
+        this.alertService.error('Thêm mới thất bại!');
+      }
+    )
+  }
+
+
   submit(form) {
-    console.log(this.product)
+    form.control.markAllAsTouched();
+    if (form.valid) {
+      if (this.productId) {
+        this.updateProduct();
+      } else {
+        this.createProduct();
+      }
+    }
+  }
+
+  updateProduct() {
+    this.spinner.show();
+    this.adminService.updateProduct(this.productId, this.product).subscribe(
+      res => {
+        this.alertService.success('Cập nhật thành công!');
+        this.spinner.hide();
+      },
+      err => {
+        this.spinner.hide();
+        this.alertService.error('Cập nhật thất bại!');
+      }
+    )
   }
 
 }

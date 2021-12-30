@@ -20,21 +20,19 @@ export class FooterComponent implements OnInit {
         this.now = new Date();
       }
     )
-    if (!this.publicService.services.length) {
-      this.getServices();
-    }
+
   }
 
-  getServices(){
-    this.publicService.getServices({}).subscribe(
-      res => {
-        this.publicService.services = res;
-      },
-      err => {
-        console.error(err)
-      }
-    )
-  }
+  // getServices(){
+  //   this.publicService.getServices({}).subscribe(
+  //     res => {
+  //       this.publicService.services = res.data;
+  //     },
+  //     err => {
+  //       console.error(err)
+  //     }
+  //   )
+  // }
 
 
 }

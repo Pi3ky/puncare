@@ -17,11 +17,20 @@ export class AdmProductsComponent implements OnInit {
 
   sortName = 0;
   sortPrice = 0;
+  totalItems = 0;
   search = {
     title: '',
+    page: 1,
+    page_size: 10,
     sort: '',
-    dir: ''
+    dir: '',
+    type_name: '',
   }
+  listType = [
+    {id: '', name: 'Tất cả'},
+    {id: 'toy', name: 'Đồ chơi'},
+    {id: 'food', name: 'Ăn uống'},
+  ]
   listProducts = [];
   constructor(
     private publicService: PublicService,
@@ -40,7 +49,8 @@ export class AdmProductsComponent implements OnInit {
     this.spinner.show();
     this.publicService.getProducts(this.search).pipe(finalize(() => this.spinner.hide())).subscribe(
       res => {
-        this.listProducts = res;
+        this.listProducts = res.data;
+        this.totalItems = res.total;
       },
       err => {
         console.error(err);
@@ -111,6 +121,14 @@ export class AdmProductsComponent implements OnInit {
         }
       }
     )
+  }
+
+  changePage(page) {
+    this.search.page = page.page;
+    if (page.showRow) {
+      this.search.page_size = page.showRow;
+    }
+    this.getProducts();
   }
 
 }

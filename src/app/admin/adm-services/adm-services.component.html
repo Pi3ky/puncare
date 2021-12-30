@@ -30,7 +30,7 @@
           <td>{{item.title}}</td>
           <td>
             <ng-container *ngIf="item.price; else noPrice">
-              <span>{{item.price | number : "4.0-2"}} VNĐ</span>
+              <span>{{item.price | number : "4.0-2"}} {{item.currency}}</span>
             </ng-container>
             <ng-template #noPrice>
               <span class="text-primary">Liên hệ</span>

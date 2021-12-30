@@ -5,7 +5,7 @@
       <h5 class="text-pun-secondary">Chúng tôi yêu động vật và sẽ yêu thú cưng của bạn theo cách bạn yêu chúng. Tại đây chúng tôi có những dịch vụ tốt nhất dành cho các bạn nhỏ</h5>
     </div>
     <div class="row">
-      <ng-container *ngFor="let service of listServices">
+      <ng-container *ngFor="let service of listServices | paginate: { id: 'custom_page', itemsPerPage: search.page_size, currentPage: search.page, totalItems: totalItems }">
         <div class=" col-12 col-lg-6">
           <a class="box-service" (click)="openService(service)">
             <img class="box-img" [src]="service.image" [alt]="service.title">
@@ -14,7 +14,7 @@
               <p>{{service.description}}</p>
               <div class="d-flex mt-auto">
                 <ng-container *ngIf="service.price; else noPrice">
-                  <span class="badge badge-pun-secondary mr-4">{{service.price | number : "4.0-2"}} VNĐ</span>
+                  <span class="badge badge-pun-secondary mr-4">{{service.price | number : "4.0-2"}} {{service.currency}}</span>
                 </ng-container>
                 <ng-template #noPrice>
                   <span class="badge badge-pun-secondary mr-4">Liên hệ</span>
@@ -26,6 +26,7 @@
         </div>
       </ng-container>
     </div>
+    <app-pagination *ngIf="totalItems > 6" [totalItems]="totalItems" [currentRow]="search.page_size" (pageChange)="changePage($event)" [pageSize]="['4', '5', '6', '10']"></app-pagination>
   </div>
 </div>
 
@@ -61,7 +62,7 @@
             </div>
             <div class="col-12 col-md-6">
               <label class="title-input-lg">Địa chỉ email</label>
-              <input type="email" formControlName="email" class="form-control input-contact" placeholder="Abc.123@punshop.vn">
+              <input type="email" formControlName="email" class="form-control input-contact" placeholder="Abc.123@puncare.vn">
             </div>
           </div>
           <div class="row form-group">
@@ -86,7 +87,7 @@
           </div>
           <div class="form-group">
             <label class="title-input-lg">Lời nhắn</label>
-            <textarea placeholder="Lời nhắn của bạn ..." class="form-control input-contact form-textarea" formControlName="msg"></textarea>
+            <textarea placeholder="Lời nhắn của bạn ..." rows="5" class="form-control input-contact" formControlName="msg"></textarea>
           </div>
           <button class="btn btn-pun-danger btn-lg btn-contact my-4">Gửi</button>
         </form>

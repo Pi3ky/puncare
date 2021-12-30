@@ -10,6 +10,8 @@ import { HttpClientModule, } from '@angular/common/http';
 import { FooterComponent } from './components/footer/footer.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ShareModule } from './components/share.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +23,8 @@ import { NgxPermissionsModule } from 'ngx-permissions';
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
     NgxPermissionsModule.forRoot(),
+    ModalModule.forRoot(),
+    ShareModule,
     RouterModule,
     HttpClientModule,
     NgxSpinnerModule,

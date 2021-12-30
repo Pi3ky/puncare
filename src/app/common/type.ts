@@ -5,6 +5,21 @@ export interface Services {
   image: string,
   price: string,
   about: string,
-  details: string;
+  currency: string,
+  details: string,
   time: string
+}
+
+export interface Products {
+  _id: string,
+  currency: string,
+  image: string,
+  price: number,
+  quantity_sold: number,
+  status: string,
+  rate: number,
+  title: string,
+  weight: string,
+  type_id: string,
+  type_name: string
 }

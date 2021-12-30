@@ -22,7 +22,15 @@ export class ServicesComponent implements OnInit {
     minDate: new Date(),
     showWeekNumbers: false,
   }
+  search = {
+    title: '',
+    sort: '',
+    dir: '',
+    page: 1,
+    page_size: 6
+  }
   contactForm: FormGroup;
+  totalItems = 0;
   shop_address = shop_address;
   constructor(
     public pageService: PagesService,
@@ -43,11 +51,7 @@ export class ServicesComponent implements OnInit {
    }
 
   ngOnInit() {
-    if (this.publicService.services.length) {
-      this.listServices = this.publicService.services;
-    } else {
-      this.getServices();
-    }
+    this.getServices();
   }
 
   /**
@@ -55,9 +59,10 @@ export class ServicesComponent implements OnInit {
    */
   getServices(){
     this.spinner.show();
-    this.publicService.getServices().pipe(finalize(() => this.spinner.hide())).subscribe(
+    this.publicService.getServices(this.search).pipe(finalize(() => this.spinner.hide())).subscribe(
       res => {
-        this.listServices = res;
+        this.listServices = res.data;
+        this.totalItems = res.total;
       },
       err => {
         console.error(err);
@@ -117,4 +122,8 @@ export class ServicesComponent implements OnInit {
     });
   }
 
+  changePage(evt) {
+    this.search.page = evt.page;
+    this.getServices();
+  }
 }
