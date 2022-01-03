@@ -24,7 +24,7 @@
     "@tinymce/tinymce-angular": "^3.6.1",
     "animate.css": "^4.1.1",
     "bootstrap": "^4.4.1",
-    "express": "^4.17.2",
+    "express": "^4.17.1",
     "jquery": "^3.4.1",
     "json-server": "^0.16.3",
     "moment": "^2.29.1",
