@@ -21,4 +21,4 @@ app.get('/*', (req, res) =>
 
 app.use(forceSSL());
 
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 3000);
