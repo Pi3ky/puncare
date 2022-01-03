@@ -12,10 +12,10 @@ const forceSSL = function () {
     next();
   }
 };
-app.use(express.static('./dist/puncare'));
+app.use(express.static('./src'));
 
 app.get('/*', (req, res) =>
-    res.sendFile('index.html', {root: 'dist/puncare/'}),
+    res.render('index', {root: 'src'}),
 );
 
 app.use(forceSSL());
