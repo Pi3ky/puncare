@@ -14,9 +14,9 @@ const forceSSL = function () {
 };
 app.use(express.static('./dist/puncare'));
 
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname,'/dist/puncare/index.html'));
-});
+app.get('/*', (req, res) =>
+    res.sendFile('index.html', {root: 'dist/puncare/'}),
+);
 
 app.use(forceSSL());
 
