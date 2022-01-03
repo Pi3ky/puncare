@@ -12,10 +12,11 @@ const forceSSL = function () {
     next();
   }
 };
-app.use(express.static('./src'));
+// Serve only the static files form the dist directory
+app.use(express.static('./dist/puncare'));
 
 app.get('/*', (req, res) =>
-    res.render('index', {root: 'src'}),
+    res.sendFile('index.html', {root: 'dist/puncare/'}),
 );
 
 app.use(forceSSL());
