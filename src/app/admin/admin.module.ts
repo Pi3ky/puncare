@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
-// import { EditorModule } from '@tinymce/tinymce-angular';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdmServicesComponent } from './adm-services/adm-services.component';
@@ -19,7 +19,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     AdminRoutingModule,
     ModalModule.forRoot(),
     NgSelectModule,
-    // EditorModule,
+    EditorModule,
     ShareModule
   ],
   entryComponents: []
