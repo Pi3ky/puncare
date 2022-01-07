@@ -24,7 +24,7 @@ export class OrderCartComponent implements OnInit {
   ngOnInit() {
     this.spinner.show();
     this.orders = this.publicService.orderProductValue || [];
-    this.calcTotalPrice();
+    if (this.orders.orders.length) this.calcTotalPrice();
   }
 
   calcTotalPrice() {
@@ -48,6 +48,7 @@ export class OrderCartComponent implements OnInit {
         if (isConfirm) {
           this.orders.orders = this.orders.orders.filter(prod => prod._id !== product._id);
           this.orders.total -= product.quantity;
+          this.totalPrice -= (product.quantity * product.price);
           this.publicService.setOrderProductValue(this.orders);
           console.log(this.orders)
         }
