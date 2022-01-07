@@ -23,7 +23,6 @@
     "@angular/router": "~8.0.0",
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@ng-select/ng-select": "^3.7.3",
-    "@tinymce/tinymce-angular": "^3.6.1",
     "animate.css": "^4.1.1",
     "bootstrap": "^4.4.1",
     "express": "^4.17.1",
