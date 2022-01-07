@@ -22,9 +22,11 @@ export class OrderCartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.spinner.show();
-    this.orders = this.publicService.orderProductValue || [];
-    if (this.orders.orders.length) this.calcTotalPrice();
+    this.orders = this.publicService.orderProductValue || {};
+    if (this.orders.orders && this.orders.orders.length) {
+      this.spinner.show();
+      this.calcTotalPrice();
+    }
   }
 
   calcTotalPrice() {
