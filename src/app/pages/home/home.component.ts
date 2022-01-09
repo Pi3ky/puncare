@@ -7,6 +7,8 @@ import { Services } from 'src/app/common/type';
 import { Router } from '@angular/router';
 import { open_hours, shop_address } from 'src/app/common/const';
 import { PublicService } from 'src/app/services/public.service';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { FormContactModalComponent } from 'src/app/components/form-contact-modal/form-contact-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +23,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private spinner: NgxSpinnerService,
     public publicService: PublicService,
+    private modalService: BsModalService,
     private router: Router,
   ) { }
 
@@ -75,6 +78,15 @@ export class HomeComponent implements OnInit {
    */
   openService(service: Services){
     this.router.navigate(['/pages/services', service._id])
+  }
+
+  openContactModal(){
+    this.modalService.show(FormContactModalComponent, {
+      class: "modal-lg modal-dialog-centered",
+      initialState: {
+        listServices: this.listServices
+      }
+    })
   }
 
 }

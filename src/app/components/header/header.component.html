@@ -1,19 +1,29 @@
 <div class="header-sticky {{scrollDown ? 'header-shadow' : 'background-cloud'}}">
   <nav class="navbar navbar-expand-lg navbar-light nav-pun-custom">
-    <div class="container">
-      <a class="navbar-brand" href="#" >
+    <div class="container-lg">
+      <a class="navbar-brand" routerLink="/pages/home" routerLinkActive="active">
         <img src="./assets/pun_image/punshop.png" alt="logo" width="50">
         <label class="ml-3 mb-0 cursor-pointer font-weight-bold">Pun Care</label>
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <div class="nav-item d-lg-none">
+        <a class="nav-link position-relative" routerLink="/pages/cart" routerLinkActive="active">
+          <i class="fas h4 mb-0 fa-shopping-cart"></i>
+          <span class="count-cart position-absolute right-sm"
+            *ngIf="publicService.orderProductValue?.total > 0">{{publicService.orderProductValue.total}}</span>
+        </a>
+      </div>
+      <button type="button" class="navbar-toggler shape-square {{openMenu ? 'bg-pun-danger text-white' : ''}}" (click)="openMenu = !openMenu" [attr.aria-expanded]="openMenu"
+        aria-controls="collapseBasic"><i class="fas fa-plus {{openMenu ? 'change' : ''}}"></i>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent" class="ml-auto">
+      <div class="collapse navbar-collapse justify-content-end">
         <ul class="navbar-nav">
-          <li class="nav-item mx-4"><a class="nav-link" routerLink="/pages/home" routerLinkActive="active">Trang chủ</a></li>
+          <li class="nav-item mx-4"><a class="nav-link" routerLink="/pages/home" routerLinkActive="active">Trang chủ</a>
+          </li>
           <li class="nav-item mx-4"><a class="nav-link" href="#" routerLinkActive="active">Giới thiệu</a></li>
-          <li class="nav-item mx-4"><a class="nav-link" routerLink="/pages/services" routerLinkActive="active">Dịch vụ</a></li>
-          <li class="nav-item mx-4"><a class="nav-link" routerLink="/pages/products" routerLinkActive="active">Sản phẩm</a></li>
+          <li class="nav-item mx-4"><a class="nav-link" routerLink="/pages/services" routerLinkActive="active">Dịch
+              vụ</a></li>
+          <li class="nav-item mx-4"><a class="nav-link" routerLink="/pages/products" routerLinkActive="active">Sản
+              phẩm</a></li>
           <!-- <li dropdown #dropdown="bs-dropdown" class="dropdown">
             <a href="javascript:;" id="sub-menu" dropdownToggle aria-controls="sub-menu-dropdown" class="nav-link"
             routerLinkActive="active" routerLink="/admin">
@@ -29,7 +39,8 @@
           <li class="nav-item mx-4">
             <a class="nav-link position-relative" routerLink="/pages/cart" routerLinkActive="active">
               <i class="fas h4 mb-0 fa-shopping-cart"></i>
-              <span class="count-cart" *ngIf="publicService.orderProductValue?.total > 0">{{publicService.orderProductValue.total}}</span>
+              <span class="count-cart position-absolute"
+                *ngIf="publicService.orderProductValue?.total > 0">{{publicService.orderProductValue.total}}</span>
             </a>
           </li>
           <li dropdown #dropdown="bs-dropdown" class="dropdown" *ngIf="currentUser; else noUser">
@@ -38,8 +49,10 @@
                 <i class="fas h4 mb-0 fa-user-circle"></i>
               </div>
             </a>
-            <ul id="login-mode-dropdown" class="dropdown-menu mt-0 py-0 shadow border-0" role="menu" aria-labelledby="login-mode">
-              <li role="menuitem"><a class="dropdown-item" routerLink="/admin/services" routerLinkActive="active">Tài khoản</a></li>
+            <ul id="login-mode-dropdown" class="dropdown-menu mt-0 py-0 shadow border-0" role="menu"
+              aria-labelledby="login-mode">
+              <li role="menuitem"><a class="dropdown-item" routerLink="/admin/services" routerLinkActive="active">Tài
+                  khoản</a></li>
               <li role="menuitem"><a class="dropdown-item cursor-pointer" (click)="logout()">Đăng xuất</a></li>
             </ul>
           </li>
@@ -55,7 +68,42 @@
         </ul>
       </div>
     </div>
-
   </nav>
 
+  <div class="bg-white menu-collapsed" id="collapseBasic" [collapse]="!openMenu" [isAnimated]="true">
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link" (click)="openMenu = !openMenu" routerLink="/pages/home" routerLinkActive="active">Trang chủ</a></li>
+      <li class="nav-item"><a class="nav-link" (click)="openMenu = !openMenu" routerLink="/pages/about" routerLinkActive="active">Giới thiệu</a></li>
+      <li class="nav-item"><a class="nav-link" (click)="openMenu = !openMenu" routerLink="/pages/services" routerLinkActive="active">Dịch vụ</a></li>
+      <li class="nav-item"><a class="nav-link" (click)="openMenu = !openMenu" routerLink="/pages/products" routerLinkActive="active">Sản phẩm</a></li>
+      <li class="nav-item">
+        <a class="nav-link d-flex" (click)="openMenu = !openMenu" routerLink="/pages/cart" routerLinkActive="active">
+          <i class="fas h4 mb-0 fa-shopping-cart"></i>
+          <span class="count-cart"
+            *ngIf="publicService.orderProductValue?.total > 0">{{publicService.orderProductValue.total}}</span>
+        </a>
+      </li>
+      <li dropdown #dropdown="bs-dropdown" class="dropdown" *ngIf="currentUser; else noUser">
+        <a id="login-mode" dropdownToggle aria-controls="login-mode-dropdown" class="nav-link">
+          <div class="rounded-circle login-link cursor-pointer">
+            <i class="fas h4 mb-0 fa-user-circle"></i>
+          </div>
+        </a>
+        <ul id="login-mode-dropdown" class="dropdown-menu mt-0 py-0 shadow border-0" role="menu"
+          aria-labelledby="login-mode">
+          <li role="menuitem"><a class="dropdown-item" routerLink="/admin/services" routerLinkActive="active">Tài khoản</a></li>
+          <li role="menuitem"><a class="dropdown-item cursor-pointer" (click)="logout()">Đăng xuất</a></li>
+        </ul>
+      </li>
+      <ng-template #noUser>
+        <li class="nav-item">
+          <a class="nav-link" (click)="directToLogin()">
+            <div class="rounded-circle login-link cursor-pointer">
+              <i class="fas h4 mb-0 fa-user-circle"></i>
+            </div>
+          </a>
+        </li>
+      </ng-template>
+    </ul>
+  </div>
 </div>

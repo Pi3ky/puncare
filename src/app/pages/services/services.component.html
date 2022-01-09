@@ -53,43 +53,42 @@
     </div>
     <div class="col-12 col-md-8">
       <div class="card-contact border">
-        <form [formGroup]="contactForm" (ngSubmit)="onSubmit(contactForm)">
+        <form #contact="ngForm">
           <div class="row form-group">
             <div class="col-12 col-md-6">
               <label class="title-input-lg">Tên</label>
-              <input type="text" formControlName="name" class="form-control input-contact"
-              placeholder="Nhập tên của bạn" required>
+              <input type="text" name="name" class="form-control input-contact" [(ngModel)]="contactForm.name" placeholder="Nhập tên của bạn" required>
             </div>
             <div class="col-12 col-md-6">
               <label class="title-input-lg">Địa chỉ email</label>
-              <input type="email" formControlName="email" class="form-control input-contact" placeholder="Abc.123@puncare.vn">
+              <input type="email" name="email" class="form-control input-contact" [(ngModel)]="contactForm.email" placeholder="Abc.123@puncare.vn">
             </div>
           </div>
           <div class="row form-group">
             <div class="col-12 col-md-6">
               <label class="title-input-lg">Số điện thoại</label>
-              <input type="tel" formControlName="phone" class="form-control input-contact" placeholder="(+84) 1234567890" required>
+              <input type="tel" name="phone" class="form-control input-contact" [(ngModel)]="contactForm.phone" placeholder="(+84) 1234567890" required>
             </div>
             <div class="col-12 col-md-6">
               <label class="title-input-lg">Lựa chọn dịch vụ</label>
-              <ng-select [items]="listServices" bindValue="id" class="custom-lg-select" [placeholder]="'Ví dụ: Spa - Tắm gội - ...'" formControlName="service" bindLabel="title"></ng-select>
+              <ng-select [items]="listServices" bindValue="_id" class="custom-lg-select" [(ngModel)]="contactForm.service" [placeholder]="'Ví dụ: Spa - Tắm gội - ...'" name="service" bindLabel="title"></ng-select>
             </div>
           </div>
           <div class="row form-group">
             <div class="col-12 col-md-6">
               <label class="title-input-lg">Thời gian</label>
-              <input type="text" formControlName="date_visit" placeholder="Chọn ngày" class="form-control input-contact" [bsConfig]="dateConfig" bsDatepicker >
+              <input type="text" name="date_visit" placeholder="Chọn ngày" [(ngModel)]="contactForm.date_visit" class="form-control input-contact" [bsConfig]="dateConfig" bsDatepicker >
             </div>
             <div class="col-12 col-md-6">
               <label class="title-input-lg">Lịch hẹn</label>
-              <ng-select [items]="pageService.schedules" [clearable]="false" [searchable]="false" bindValue="id" class="custom-lg-select" [placeholder]="'Ví dụ: Buổi sáng'" formControlName="time_visit" bindLabel="name"></ng-select>
+              <ng-select [items]="publicService.schedules" [clearable]="false" [(ngModel)]="contactForm.time_visit" [searchable]="false" bindValue="id" class="custom-lg-select" [placeholder]="'Ví dụ: Buổi sáng'" name="time_visit" bindLabel="name"></ng-select>
             </div>
           </div>
           <div class="form-group">
             <label class="title-input-lg">Lời nhắn</label>
-            <textarea placeholder="Lời nhắn của bạn ..." rows="5" class="form-control input-contact" formControlName="msg"></textarea>
+            <textarea placeholder="Lời nhắn của bạn ..." rows="5" class="form-control input-contact" name="msg" [(ngModel)]="contactForm.msg"></textarea>
           </div>
-          <button class="btn btn-pun-danger btn-lg btn-contact my-4">Gửi</button>
+          <button class="btn btn-pun-danger btn-lg btn-contact my-4" type="button" (click)="onSubmit(contact)">Gửi</button>
         </form>
       </div>
     </div>

@@ -1,14 +1,14 @@
 <div class="head-content">
-  <div class="container">
+  <div class="container-lg">
     <div class="row">
-      <div class="col-12 col-md-6 d-flex align-items-center">
-        <div class="quote">
+      <div class="col-12 col-lg-6 d-flex align-items-center">
+        <div class="quote mb-3">
           <h1>Sự hài lòng của bạn là mục tiêu của chúng tôi</h1>
           <div>Sản phẩm và dịch vụ của chúng tôi là để mang đến cho bạn và những người bạn nhỏ của bạn sự hài lòng</div>
-          <a class="btn btn-lg btn-pun-danger mt-4" routerLink="pages/contact" routerLinkActive="active">Liên hệ</a>
+          <button class="btn btn-lg btn-pun-danger mt-4" (click)="openContactModal()">Liên hệ</button>
         </div>
       </div>
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-lg-6 text-center">
         <img src="./assets/pun_image/home_template.png" class="img-temp">
       </div>
     </div>
@@ -20,25 +20,25 @@
 </div>
 
 <div class="home-contact">
-  <div class="container">
-    <div class="d-flex justify-content-between">
+  <div class="container-lg">
+    <div class="d-flex justify-content-between flex-wrap">
       <!-- Contact -->
-      <div class="box-contact mr-4">
+      <div class="box-contact mr-4 mb-4">
         <div class="circle-icon">
           <i class="fas fa-at"></i>
         </div>
         <div class="content-contact">
           <h4 class="font-weiht-bold">Liên hệ</h4>
-          <label>
+          <p class="mb-2">
             <a href="{{shop_address.email}}"  class="text-pun-secondary">{{shop_address.email}}</a>
-          </label>
-          <label>
+          </p>
+          <p class="mb-2">
             <a href="tel: {{shop_address.phone}}"  class="text-pun-secondary">{{shop_address.phone}}</a>
-          </label>
+          </p>
         </div>
       </div>
       <!-- Open Hours -->
-      <div class="box-contact mx-4">
+      <div class="box-contact ml-4 mr-0 mr-lg-4 mb-4">
         <div class="circle-icon">
           <i class="fas fa-clock"></i>
         </div>
@@ -50,7 +50,7 @@
         </div>
       </div>
       <!-- Location -->
-      <div class="box-contact ml-4">
+      <div class="box-contact ml-0 ml-lg-4">
         <div class="circle-icon">
           <i class="fas fa-map-marker-alt"></i>
         </div>
@@ -64,10 +64,10 @@
   </div>
 </div>
 
-<div class="container stick"></div>
+<div class="container-lg stick"></div>
 
 <!-- Preview services -->
-<div class="container mb-5">
+<div class="container-lg mb-5">
   <div class="services">
     <h2 class="mb-5 font-weight-bold">Dịch vụ</h2>
     <owl-carousel-o [options]="customOptions">
@@ -94,27 +94,31 @@
 </div>
 
 <!-- About us -->
-<div class="box-about background-cloud px-5">
+<div class="box-about background-cloud px-lg-5">
   <div class="d-flex mx-5">
-    <div class="home-about-img">
+    <div class="home-about-img d-none d-lg-block">
       <img src="./assets/pun_image/home-about-img.jpeg" class="img-about">
       <img src="./assets/pun_image/home-about-cat.jpg" class="img-about img-cat-3d">
     </div>
-    <div class="about-us pl-4">
+    <div class="about-us pl-lg-4">
       <h2 class="font-weight-bold mb-4">Giới thiệu</h2>
-      <p class="text-pun-secondary font-weight-500">Với tình yêu dành cho thú cưng, chúng tôi đã bắt đầu xây dựng thương hiệu hạng nhất trong lĩnh vực chăm sóc các bạn nhỏ. Được thành lập vào năm 2000, hơn 21 năm, chúng tôi luôn ưu tiên trải nghiệm của khách hàng và sự thoải mái của những người bạn nhỏ của chúng tôi.</p>
-      <p class="d-flex align-items-center">
-        <img src="./assets/_icon/check.png" width="30" class="mr-4">
-        <label class="mb-0 font-weight-bold">Trên 20 năm kinh nghiệm</label>
-      </p>
-      <p class="d-flex align-items-center">
-        <img src="./assets/_icon/check.png" width="30" class="mr-4">
-        <label class="mb-0 font-weight-bold">15 bác sĩ thú y tài năng sẵn sàng giúp bạn</label>
-      </p>
-      <p class="d-flex align-items-center">
-        <img src="./assets/_icon/check.png" width="30" class="mr-4">
-        <label class="mb-0 font-weight-bold">Dịch vụ chất lượng cao</label>
-      </p>
+      <div class="d-flex d-lg-block">
+        <p class="text-pun-secondary font-weight-500 text-about">Với tình yêu dành cho thú cưng, chúng tôi đã bắt đầu xây dựng thương hiệu hạng nhất trong lĩnh vực chăm sóc các bạn nhỏ. Được thành lập vào năm 2000, hơn 21 năm, chúng tôi luôn ưu tiên trải nghiệm của khách hàng và sự thoải mái của những người bạn nhỏ của chúng tôi.</p>
+        <div class="pl-4 pl-lg-0">
+          <p class="d-flex align-items-center">
+            <img src="./assets/_icon/check.png" width="30" class="mr-4">
+            <label class="mb-0 font-weight-bold">Trên 20 năm kinh nghiệm</label>
+          </p>
+          <p class="d-flex align-items-center">
+            <img src="./assets/_icon/check.png" width="30" class="mr-4">
+            <label class="mb-0 font-weight-bold">15 bác sĩ thú y tài năng sẵn sàng giúp bạn</label>
+          </p>
+          <p class="d-flex align-items-center">
+            <img src="./assets/_icon/check.png" width="30" class="mr-4">
+            <label class="mb-0 font-weight-bold">Dịch vụ chất lượng cao</label>
+          </p>
+        </div>
+      </div>
       <a class="btn btn-lg btn-pun-danger mt-4" routerLink="pages/about" routerLinkActive="active">Tìm hiểu thêm</a>
     </div>
   </div>

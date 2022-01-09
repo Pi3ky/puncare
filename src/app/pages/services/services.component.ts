@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs/operators';
@@ -8,6 +7,7 @@ import { Services } from 'src/app/common/type';
 import { AlertService } from 'src/app/services/alert.service';
 import { PublicService } from 'src/app/services/public.service';
 import { PagesService } from '../pages.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-services',
@@ -21,7 +21,17 @@ export class ServicesComponent implements OnInit {
     isAnimated: true,
     minDate: new Date(),
     showWeekNumbers: false,
+    dateInputFormat: 'DD/MM/YYYY',
   }
+  contactForm = {
+    name: '',
+    phone: '',
+    email: '',
+    service: null,
+    date_visit: new Date,
+    time_visit: null,
+    msg: ''
+  };
   search = {
     title: '',
     sort: '',
@@ -29,25 +39,15 @@ export class ServicesComponent implements OnInit {
     page: 1,
     page_size: 6
   }
-  contactForm: FormGroup;
   totalItems = 0;
   shop_address = shop_address;
   constructor(
     public pageService: PagesService,
     private spinner: NgxSpinnerService,
     public publicService: PublicService,
-    private fb: FormBuilder,
     private router: Router,
+    private alertService: AlertService
   ) {
-    this.contactForm = this.fb.group({
-      name: ['', Validators.required],
-      phone: ['', Validators.required],
-      email: ['', Validators.email],
-      service: [null],
-      date_visit: [new Date()],
-      time_visit: [null],
-      msg: ['']
-    });
    }
 
   ngOnInit() {
@@ -86,40 +86,38 @@ export class ServicesComponent implements OnInit {
     console.log(evt)
   }
 
-  onSubmit(contactForm){
-
-    // this.alertService.error('Win')
-
-    if(contactForm.invalid){
-      this.markFormGroupTouched(contactForm)
-      return;
-    } else {
+  onSubmit(form){
+    if(form.valid){
       this.spinner.show();
       const body = {
-        ...contactForm.value,
-        date_visit: new Date(contactForm.value.date_visit).getTime()
+        ...this.contactForm,
+        date_visit: moment(this.contactForm.date_visit).format("DDMMYYYY")
       }
       console.log(body)
-      this.pageService.sendContact(body).pipe(finalize(() => this.spinner.hide())).subscribe(
+      this.publicService.sendContact(body).pipe(finalize(() => this.spinner.hide())).subscribe(
         res => {
-          // this.
+          this.contactForm = this.getDefaultForm();
+          form.reset();
+          this.alertService.success('Gửi tin nhắn thành công!');
+        },
+        err => {
+          console.error(err);
+          this.alertService.error(err)
         }
       )
     }
   }
 
-  /**
-   * Marks all controls in a form group as touched
-   * @param formGroup - The form group to touch
-  */
-   private markFormGroupTouched(formGroup) {
-    (<any>Object).values(formGroup.controls).forEach(control => {
-      control.markAsTouched();
-
-      if (control.controls) {
-        this.markFormGroupTouched(control);
-      }
-    });
+  getDefaultForm(){
+    return {
+      name: '',
+      phone: '',
+      email: '',
+      service: null,
+      date_visit: new Date,
+      time_visit: null,
+      msg: ''
+    }
   }
 
   changePage(evt) {

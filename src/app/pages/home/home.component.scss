@@ -112,3 +112,22 @@
     margin-right: 20px;
   }
 }
+
+
+@media screen and (max-width: 768px) {
+  .img-temp {
+    height: 400px;
+  }
+  .quote {
+    text-align: center;
+  }
+  .about-us{
+    max-width: 100%;
+  }
+  .text-about{
+    max-width: 50%;
+  }
+  .services {
+    padding-top: 60px;
+  }
+}

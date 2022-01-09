@@ -15,6 +15,7 @@ import { LoginCustomerComponent } from '../login-customer/login-customer.compone
 })
 export class HeaderComponent implements OnInit {
   scrollDown = false;
+  openMenu = false;
   currentUser;
   orderProducts;
   constructor(

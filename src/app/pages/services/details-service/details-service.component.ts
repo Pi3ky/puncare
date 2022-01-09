@@ -24,7 +24,7 @@ export class DetailsServiceComponent implements OnInit {
   bookingForm = {
     name: "",
     phone: "",
-    date_visit: "",
+    date_visit: new Date,
     time_visit: null,
     service: ""
   };
@@ -54,7 +54,7 @@ export class DetailsServiceComponent implements OnInit {
       name: "",
       phone: "",
       email: "",
-      date_visit: "",
+      date_visit: new Date,
       time_visit: null,
       service: this.service._id
     }
@@ -77,9 +77,11 @@ export class DetailsServiceComponent implements OnInit {
 
   submitBooking(form){
     this.spinner.show();
-    if (this.bookingForm.date_visit) {
-      this.bookingForm.date_visit = moment(this.bookingForm.date_visit).format("DDMMYYYY");
+    const body = {
+      ...this.bookingForm,
+      date_visit: moment(this.bookingForm.date_visit).format("DDMMYYYY")
     }
+
     console.log(this.bookingForm)
     this.bookingForm = this.getDefaultForm();
     form.reset();

@@ -12,17 +12,27 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ShareModule } from './components/share.module';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { AlertComponent } from './components/alert/alert.component';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    AlertComponent,
     FooterComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
+    CollapseModule.forRoot(),
     NgxPermissionsModule.forRoot(),
+    ToastrModule.forRoot({
+      maxOpened: 1,
+      autoDismiss: true
+  }),
     ModalModule.forRoot(),
     ShareModule,
     RouterModule,

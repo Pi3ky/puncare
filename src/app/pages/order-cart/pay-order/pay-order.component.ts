@@ -11,11 +11,13 @@ import { PagesService } from '../../pages.service';
 })
 export class PayOrderComponent implements OnInit {
   shippingFee = 20000;
+  submitted = false;
   payForm = {
     name: '',
     address: '',
     city: '',
     phone: '',
+    email: '',
     district: '',
     totalPrice: 0,
     post_code: '',
@@ -57,6 +59,7 @@ export class PayOrderComponent implements OnInit {
   submit(form) {
     form.control.markAllAsTouched();
     if (form.valid) {
+      this.submitted = true;
       this.spinner.show();
       this.payForm.totalPrice += this.shippingFee;
       this.pagesService.createOrder(this.payForm).subscribe(

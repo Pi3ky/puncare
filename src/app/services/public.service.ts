@@ -12,6 +12,11 @@ export class PublicService {
   private orderProductSbj: BehaviorSubject<any>;
   public orderProductsObj: Observable<any>;
   STORAGE_KEY = 'orders';
+  public readonly schedules = [
+    { id: "morning", name: "Buổi sáng (8h00 - 11h30)" },
+    { id: "afternoon", name: "Buổi chiều (13h00 - 17h00)" },
+    { id: "evening", name: "Buổi tối (18h00 - 20h30)" }
+  ]
   constructor(private http: HttpClient) {
     this.orderProductSbj = new BehaviorSubject<any>(JSON.parse(sessionStorage.getItem(this.STORAGE_KEY)));
     this.orderProductsObj = this.orderProductSbj.asObservable();
@@ -44,5 +49,9 @@ export class PublicService {
 
   getTypeProduct(): Observable<any> {
     return this.http.get<any>(`${urlApi}/api/types`);
+  }
+
+  sendContact(body): Observable<any> {
+    return this.http.post<any>(`${urlApi}/api/contacts/create`, body);
   }
 }

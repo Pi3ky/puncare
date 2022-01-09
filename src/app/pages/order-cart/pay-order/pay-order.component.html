@@ -20,8 +20,12 @@
           </div>
         </div>
         <div class="form-group">
+          <label>Email <b class="text-danger">*</b></label>
+          <input type="text" name="email" class="form-control" [(ngModel)]="payForm.email" required>
+        </div>
+        <div class="form-group">
           <label>Địa chỉ <b class="text-danger">*</b></label>
-          <input type="text" name="address" class="form-control" placeholder="Địa chỉ" [(ngModel)]="payForm.address" required>
+          <input type="text" name="address" class="form-control" placeholder="Địa chỉ người nhận" [(ngModel)]="payForm.address" required>
         </div>
         <div class="form-group">
           <label>Phường / Xã</label>
@@ -65,7 +69,6 @@
                 <td class="font-weight-bold">Tổng giá đơn hàng</td>
                 <td class="text-right font-weight-bold">{{(shippingFee + payForm.totalPrice) | number : '4.0-2'}} VNĐ</td>
               </tr>
-
             </tbody>
           </table>
         </div>
@@ -98,8 +101,7 @@
       <h4>Quý khách được phép kiểm tra hàng trước khi nhận hàng</h4>
     </div>
     <div class="text-right">
-      <button class="btn btn-lg btn-pun-danger btn-static rounded-sm w-25 mt-3" (click)="submit(pay)" type="button">Đặt hàng</button>
+      <button class="btn btn-lg btn-pun-danger btn-static rounded-sm w-25 mt-3" (click)="submit(pay)" type="button" [disabled]="submitted">Đặt hàng</button>
     </div>
   </form>
-
 </div>
