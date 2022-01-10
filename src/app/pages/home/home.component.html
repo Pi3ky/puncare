@@ -21,9 +21,9 @@
 
 <div class="home-contact">
   <div class="container-lg">
-    <div class="d-flex justify-content-between flex-wrap">
+    <div class="px-0 px-md-3 px-lg-0 d-flex justify-content-between flex-wrap">
       <!-- Contact -->
-      <div class="box-contact mr-4 mb-4">
+      <div class="box-contact mr-0 mr-sm-4 mb-4">
         <div class="circle-icon">
           <i class="fas fa-at"></i>
         </div>
@@ -38,7 +38,7 @@
         </div>
       </div>
       <!-- Open Hours -->
-      <div class="box-contact ml-4 mr-0 mr-lg-4 mb-4">
+      <div class="box-contact ml-0 ml-sm-4 mr-0 mr-lg-4 mb-4">
         <div class="circle-icon">
           <i class="fas fa-clock"></i>
         </div>
@@ -72,7 +72,7 @@
     <h2 class="mb-5 font-weight-bold">Dịch vụ</h2>
     <owl-carousel-o [options]="customOptions">
       <ng-template carouselSlide *ngFor="let service of listServices">
-        <a class="box-service" (click)="openService(service)">
+        <a class="box-service d-block d-md-flex" (click)="openService(service)">
           <img class="box-img" [src]="service.image" [alt]="service.title">
           <div class="d-flex flex-column">
             <h3 class="font-weight-bold">{{service.title}}</h3>
@@ -95,14 +95,14 @@
 
 <!-- About us -->
 <div class="box-about background-cloud px-lg-5">
-  <div class="d-flex mx-5">
+  <div class="d-flex mx-3 mx-lg-5">
     <div class="home-about-img d-none d-lg-block">
       <img src="./assets/pun_image/home-about-img.jpeg" class="img-about">
       <img src="./assets/pun_image/home-about-cat.jpg" class="img-about img-cat-3d">
     </div>
     <div class="about-us pl-lg-4">
       <h2 class="font-weight-bold mb-4">Giới thiệu</h2>
-      <div class="d-flex d-lg-block">
+      <div class="d-block d-md-flex d-lg-block">
         <p class="text-pun-secondary font-weight-500 text-about">Với tình yêu dành cho thú cưng, chúng tôi đã bắt đầu xây dựng thương hiệu hạng nhất trong lĩnh vực chăm sóc các bạn nhỏ. Được thành lập vào năm 2000, hơn 21 năm, chúng tôi luôn ưu tiên trải nghiệm của khách hàng và sự thoải mái của những người bạn nhỏ của chúng tôi.</p>
         <div class="pl-4 pl-lg-0">
           <p class="d-flex align-items-center">

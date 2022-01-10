@@ -32,7 +32,7 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot({
       maxOpened: 1,
       autoDismiss: true
-  }),
+    }),
     ModalModule.forRoot(),
     ShareModule,
     RouterModule,

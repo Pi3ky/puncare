@@ -21,6 +21,6 @@ export const Role = {
 }
 
 export const typeProduct = [
-  { id: 'toy', name: 'Đồ chơi' },
-  { id: 'food', name: 'Ăn uống' },
+  { type_id: '61cc2d054922a34fdb8e02e9', type_name: 'Đồ chơi' },
+  { type_id: '61cc2da84922a34fdb8e02eb', type_name: 'Ăn uống' },
 ]

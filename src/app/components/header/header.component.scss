@@ -3,7 +3,7 @@
   top: 0;
   width: 100%;
   background-color: #fff;
-  z-index: 2;
+  z-index: 4;
   transition: all 0.2s ease;
   opacity: 0.95;
   .nav-pun-custom{
@@ -87,4 +87,10 @@
 
 .right-sm {
   right: -5px;
+}
+
+@media screen and (max-width: 768px) {
+  .header-sticky {
+    opacity: 1;
+  }
 }

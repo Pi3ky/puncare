@@ -1,0 +1,9 @@
+.btn-pun-danger {
+  width: 25%;
+}
+
+@media screen and(max-width: 576px) {
+  .btn-pun-danger {
+    width: 100%;
+  }
+}

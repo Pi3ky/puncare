@@ -34,14 +34,14 @@ export class HomeComponent implements OnInit {
     pullDrag: false,
     dots: false,
     margin: 40,
-    autoplay: true,
+    autoplay: false,
     center: true,
     navSpeed: 700,
     autoplaySpeed: 700,
     autoplayHoverPause: true,
     navText: ['', ''],
     responsive: {
-      400: {
+      0: {
         items: 1
       },
       940: {

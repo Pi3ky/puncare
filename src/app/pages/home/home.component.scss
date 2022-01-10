@@ -116,7 +116,7 @@
 
 @media screen and (max-width: 768px) {
   .img-temp {
-    height: 400px;
+    height: 300px;
   }
   .quote {
     text-align: center;
@@ -129,5 +129,14 @@
   }
   .services {
     padding-top: 60px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .box-contact {
+    min-width: 290px;
+  }
+  .text-about{
+    max-width: 100%;
   }
 }
