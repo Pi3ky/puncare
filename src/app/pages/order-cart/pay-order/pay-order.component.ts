@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AlertService } from 'src/app/services/alert.service';
 import { PublicService } from 'src/app/services/public.service';
@@ -22,7 +23,8 @@ export class PayOrderComponent implements OnInit {
     totalPrice: 0,
     post_code: '',
     payment: 'banking',
-    note: ''
+    note: '',
+    items: []
   };
   arrayPayment = [
     {
@@ -41,6 +43,7 @@ export class PayOrderComponent implements OnInit {
     private publicService: PublicService,
     private pagesService: PagesService,
     private alertService: AlertService,
+    private router: Router,
     private spinner: NgxSpinnerService,
   ) { }
 
@@ -61,12 +64,13 @@ export class PayOrderComponent implements OnInit {
     if (form.valid) {
       this.submitted = true;
       this.spinner.show();
+      this.payForm.items = this.ordersList;
       this.payForm.totalPrice += this.shippingFee;
       this.pagesService.createOrder(this.payForm).subscribe(
         res => {
           this.alertService.success('Đơn hàng đã được gửi đi!');
           this.publicService.setOrderProductValue(null);
-          this.spinner.hide();
+          this.router.navigate(['/pages/products'])
         },
         err => {
           console.error(err);

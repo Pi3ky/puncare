@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body">
   <h3>{{loginMode ? 'Đăng nhập' : 'Đăng kí'}} tài khoản</h3>
-  <p>Tài khoản quản lý? <a href="javascript:;" (click)="directToLoginAdmin()">Đăng nhập</a></p>
+  <p>Tài khoản quản lý? <a href="https://admin-puncare.web.app/login" target="_blank">Đăng nhập</a></p>
   <ng-container *ngIf="selectedType; else selectType">
     <ng-container *ngIf="loginMode; else signupMode">
       <form #login="ngForm">

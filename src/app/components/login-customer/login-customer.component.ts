@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
 import { AlertService } from 'src/app/services/alert.service';
@@ -29,18 +28,12 @@ export class LoginCustomerComponent implements OnInit {
     city: ''
   }
   constructor(
-    private router: Router,
     private authService: AuthService,
     private alertService: AlertService,
     public bsModalRef: BsModalRef
   ) { }
 
   ngOnInit() {
-  }
-
-  directToLoginAdmin() {
-    this.bsModalRef.hide();
-    this.router.navigate(['/login-admin'])
   }
 
   selectForm(type) {

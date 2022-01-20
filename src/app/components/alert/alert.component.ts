@@ -16,7 +16,6 @@ export class AlertComponent implements OnInit {
 
   ngOnInit() {
     this.subscription = this.alertService.getAlert().subscribe((message) => {
-      console.log(message);
       switch (message && message.type) {
         case "success":
           this.toastr.success(message.text, 'Thành công!', message.option);
