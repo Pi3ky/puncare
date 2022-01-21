@@ -5,8 +5,8 @@
       <h5 class="text-pun-secondary">Hiện tại, chúng tôi có bán những loại sản phẩm được ưa chuộng trên thị trường, đảm
         bảo chất lượng và giàu chất dinh dưỡng cho nhiều loại vật nuôi.</h5>
     </div>
-    <div class="d-flex">
-      <div class="filter-box shadow">
+    <div class="d-lg-flex">
+      <div class="filter-box shadow d-none d-lg-block">
         <div class="input-group mb-3">
           <input type="text" class="form-control position-relative rounded" [(ngModel)]="search.title" (change)="getProducts()" placeholder="Tìm kiếm" aria-describedby="button-search">
           <div class="input-group-append h-100 btn-inside">
@@ -19,6 +19,20 @@
             <li class="list-group-item list-group-item-action pl-0 cursor-pointer border-0" [class.active]="search.type_id === ''" (click)="filterType({_id: ''})">Tất cả sản phẩm</li>
             <li class="list-group-item list-group-item-action pl-0 cursor-pointer border-0" [class.active]="search.type_id === type._id" *ngFor="let type of typeProduct" (click)="filterType(type)">{{type.type_name}}</li>
           </ul>
+        </div>
+      </div>
+      <div class="d-lg-none row mb-3">
+        <div class="col-12 col-md-4 mb-3 mb-md-0">
+          <ng-select [clearable]="false" [(ngModel)]="search.type_id" [searchable]="false" bindValue="_id" bindLabel="name" (change)="filterType($event)">
+            <ng-option [value]="{_id: ''}">Tất cả sản phẩm</ng-option>
+            <ng-option *ngFor="let type of typeProduct" [value]="type">{{type.type_name}}</ng-option>
+          </ng-select>
+        </div>
+        <div class="input-group col-12 col-md-8">
+          <input type="text" class="form-control position-relative rounded" [(ngModel)]="search.title" (change)="getProducts()" placeholder="Tìm kiếm" aria-describedby="button-search">
+          <div class="input-group-append h-100 btn-inside right-3">
+            <button class="btn btn-sm" id="button-search"><i class="fas fa-search"></i></button>
+          </div>
         </div>
       </div>
       <div class="w-100 row">

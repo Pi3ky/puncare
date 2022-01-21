@@ -10,8 +10,9 @@ import { FormsModule } from '@angular/forms';
 import { OrderCartComponent } from './order-cart/order-cart.component';
 import { PayOrderComponent } from './order-cart/pay-order/pay-order.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { AboutComponent } from './about/about.component';
 @NgModule({
-  declarations: [HomeComponent, OrderCartComponent, PayOrderComponent],
+  declarations: [HomeComponent, OrderCartComponent, PayOrderComponent, AboutComponent],
   imports: [
     ShareModule,
     CommonModule,

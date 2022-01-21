@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import { map, switchMap } from 'rxjs/operators';
+import { finalize, map, switchMap } from 'rxjs/operators';
 import { Services } from 'src/app/common/type';
 import { PagesService } from '../../pages.service';
 import * as moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { PublicService } from 'src/app/services/public.service';
+import { AlertService } from 'src/app/services/alert.service';
 @Component({
   selector: 'app-details-service',
   templateUrl: './details-service.component.html',
@@ -22,11 +23,14 @@ export class DetailsServiceComponent implements OnInit {
     dateInputFormat: 'DD/MM/YYYY',
   }
   bookingForm = {
-    name: "",
-    phone: "",
+    name: '',
+    phone: '',
+    email: '',
+    service_id: null,
+    service_name: '',
     date_visit: new Date,
     time_visit: null,
-    service: ""
+    msg: ''
   };
   service: Services;
   constructor(
@@ -34,6 +38,7 @@ export class DetailsServiceComponent implements OnInit {
     public pageService: PagesService,
     private spinner: NgxSpinnerService,
     public publicService: PublicService,
+    private alertService: AlertService,
   ) {
 
    }
@@ -44,19 +49,21 @@ export class DetailsServiceComponent implements OnInit {
       switchMap(id => this.publicService.getServiceDetail(id))
     ).subscribe(service => {
       this.service = service;
-      this.bookingForm.service = this.service._id;
+      this.bookingForm.service_id = this.service._id;
       this.getServices();
     })
   }
 
   getDefaultForm(){
     return {
-      name: "",
-      phone: "",
-      email: "",
+      name: '',
+      phone: '',
+      email: '',
+      service_id: this.service._id,
+      service_name: '',
       date_visit: new Date,
       time_visit: null,
-      service: this.service._id
+      msg: ''
     }
   }
 
@@ -76,15 +83,30 @@ export class DetailsServiceComponent implements OnInit {
   }
 
   submitBooking(form){
-    this.spinner.show();
-    const body = {
-      ...this.bookingForm,
-      date_visit: moment(this.bookingForm.date_visit).format("DDMMYYYY")
+    form.control.markAllAsTouched();
+    if(form.valid){
+      this.spinner.show();
+      const body = {
+        ...this.bookingForm,
+        date_visit: moment(this.bookingForm.date_visit).format("DD/MM/YYYY")
+      }
+      this.publicService.sendContact(body).pipe(finalize(() => this.spinner.hide())).subscribe(
+        res => {
+          form.reset();
+          this.alertService.success('Chúng tôi sẽ sớm liên hệ với bạn!');
+          this.bookingForm = this.getDefaultForm();
+          form.reset();
+        },
+        err => {
+          console.error(err);
+          this.alertService.error(err)
+        }
+      )
     }
+  }
 
-    console.log(this.bookingForm)
-    this.bookingForm = this.getDefaultForm();
-    form.reset();
+  setService(service) {
+    this.bookingForm.service_name = service.title;
   }
 
 }

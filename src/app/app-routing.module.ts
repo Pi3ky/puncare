@@ -7,10 +7,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/pages.module').then( m => m.PagesModule)
   },
   {
-    path: 'login-admin',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginModule)
-  },
-  {
     path: '',
     redirectTo: 'pages',
     pathMatch: 'full'

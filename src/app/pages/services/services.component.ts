@@ -27,7 +27,8 @@ export class ServicesComponent implements OnInit {
     name: '',
     phone: '',
     email: '',
-    service: null,
+    service_id: null,
+    service_name: '',
     date_visit: new Date,
     time_visit: null,
     msg: ''
@@ -91,9 +92,8 @@ export class ServicesComponent implements OnInit {
       this.spinner.show();
       const body = {
         ...this.contactForm,
-        date_visit: moment(this.contactForm.date_visit).format("DDMMYYYY")
+        date_visit: moment(this.contactForm.date_visit).format("DD/MM/YYYY")
       }
-      console.log(body)
       this.publicService.sendContact(body).pipe(finalize(() => this.spinner.hide())).subscribe(
         res => {
           this.contactForm = this.getDefaultForm();
@@ -113,11 +113,16 @@ export class ServicesComponent implements OnInit {
       name: '',
       phone: '',
       email: '',
-      service: null,
+      service_id: null,
+      service_name: '',
       date_visit: new Date,
       time_visit: null,
       msg: ''
     }
+  }
+
+  setService(service) {
+    this.contactForm.service_name = service.title;
   }
 
   changePage(evt) {
