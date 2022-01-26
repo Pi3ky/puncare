@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
-import { AlertService } from 'src/app/services/alert.service';
-import { AuthService } from 'src/app/services/auth-services.service';
+import { finalize } from 'rxjs/operators';
+import { AlertService } from 'src/app/_services/alert.service';
+import { AuthService } from 'src/app/_services/auth-services.service';
 
 @Component({
   selector: 'app-login-customer',
@@ -13,7 +14,9 @@ export class LoginCustomerComponent implements OnInit {
   result = new Subject<any>();
   loginMode: boolean = true;
   isLoading: boolean = false;
-  selectedType = false;
+  selectedType: boolean = false;
+  submitRegister: boolean = false;
+  activeForgotPW: boolean = false;
   loginForm = {
     email: '',
     password: ''
@@ -27,6 +30,9 @@ export class LoginCustomerComponent implements OnInit {
     district: '',
     city: ''
   }
+  forgotForm = {
+    email: ''
+  }
   constructor(
     private authService: AuthService,
     private alertService: AlertService,
@@ -39,40 +45,67 @@ export class LoginCustomerComponent implements OnInit {
   selectForm(type) {
     this.selectedType = true;
     this.loginMode = type;
+    this.activeForgotPW = false;
   }
 
-  submitLogin(form) {
+  onSubmitLogin(form) {
     form.control.markAllAsTouched();
     if (form.valid) {
       this.isLoading = true;
-      this.authService.createSession(this.loginForm).subscribe(
+      this.authService.createSession(this.loginForm).pipe(finalize(() => this.isLoading = false)).subscribe(
         res => {
           this.result.next(res.user);
-          localStorage.setItem('user', JSON.stringify(res.user));
+          this.authService.setCurrentUserValue(res.user);
           localStorage.setItem('token', res.token);
-          this.isLoading = false;
+          this.alertService.success(`Xin chào ${res.user.name}!`);
           this.bsModalRef.hide();
         }, err => {
-          this.alertService.error(err);
-          console.error(err);
-          this.isLoading = false;
+          this.alertService.error(err.error);
+          console.error(err.error);
         }
       )
     }
   }
 
-  submitRegister(form) {
+  onSubmitRegister(form) {
+    form.control.markAllAsTouched();
+    this.submitRegister = true;
+    if (form.valid) {
+      this.isLoading = true;
+      this.authService.createUser(this.registerForm).pipe(finalize(() => this.isLoading = false)).subscribe(
+        res => {
+          this.loginMode = true;
+          this.activeForgotPW = false;
+        }, err => {
+          this.alertService.error(err.error);
+          console.error(err);
+        }
+      )
+    }
+  }
+
+  directToForgotPW() {
+    this.activeForgotPW = true;
+  }
+
+  backType() {
+    if (this.activeForgotPW) {
+      this.activeForgotPW = false;
+    } else {
+      this.selectedType = false;
+    }
+  }
+
+  onSubmitForgotPW(form) {
     form.control.markAllAsTouched();
     if (form.valid) {
       this.isLoading = true;
-      this.authService.createUser(this.registerForm).subscribe(
+      this.authService.forgotPassword(this.forgotForm).pipe(finalize(() => this.isLoading = false)).subscribe(
         res => {
-          this.isLoading = false;
-          this.loginMode = true;
+          this.alertService.success(res);
         }, err => {
-          this.alertService.error(err);
-          console.error(err);
-          this.isLoading = false;
+          console.error(err)
+          this.alertService.error(err.error);
         }
       )
     }

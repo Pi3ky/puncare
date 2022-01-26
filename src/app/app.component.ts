@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { NgxPermissionsService } from 'ngx-permissions';
-import { AlertService } from './services/alert.service';
-import { PublicService } from './services/public.service';
+import { AlertService } from './_services/alert.service';
+import { PublicService } from './_services/public.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +9,6 @@ import { PublicService } from './services/public.service';
 })
 export class AppComponent {
   constructor(
-    private permissionsService: NgxPermissionsService,
     public publicService: PublicService,
     private alertService: AlertService,
   ){
@@ -27,7 +25,7 @@ export class AppComponent {
         },
         err => {
           console.error(err);
-          this.alertService.error(err)
+          this.alertService.error(err.error)
         }
       )
     }

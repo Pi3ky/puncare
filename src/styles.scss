@@ -60,6 +60,18 @@ body {
   color: #d73038;
 }
 
+.form-control:read-only {
+  pointer-events: none;
+}
+.input-errors{
+  position: absolute;
+  top: 62px;
+  font-size: 13px;
+  font-weight: 500;
+  left: 0;
+  color: rgba(220,53,69,.9);
+}
+
 .form-control {
   &:focus {
     box-shadow: none;
@@ -132,6 +144,12 @@ body {
     font-size: 20px;
     color: #ff8d7c;
   }
+}
+
+//container
+.narrow-container {
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 // selector

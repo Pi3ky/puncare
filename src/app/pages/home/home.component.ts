@@ -6,7 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Services } from 'src/app/common/type';
 import { Router } from '@angular/router';
 import { open_hours, shop_address } from 'src/app/common/const';
-import { PublicService } from 'src/app/services/public.service';
+import { PublicService } from 'src/app/_services/public.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormContactModalComponent } from 'src/app/components/form-contact-modal/form-contact-modal.component';
 

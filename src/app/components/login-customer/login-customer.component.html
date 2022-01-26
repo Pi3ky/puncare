@@ -1,35 +1,47 @@
 <div class="modal-header border-bottom-0">
-  <i class="fas h4 mb-0 fa-long-arrow-alt-left text-secondary cursor-pointer" *ngIf="selectedType" (click)="selectedType = false"></i>
+  <i class="fas h4 mb-0 fa-long-arrow-alt-left text-secondary cursor-pointer" *ngIf="selectedType" (click)="backType()"></i>
   <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef?.hide()">
     <span aria-hidden="true" class="visually-hidden">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <h3>{{loginMode ? 'Đăng nhập' : 'Đăng kí'}} tài khoản</h3>
+  <h3 *ngIf="activeForgotPW">Quên mật khẩu</h3>
+  <h3 *ngIf="!activeForgotPW">{{loginMode ? 'Đăng nhập' : 'Đăng kí'}} tài khoản</h3>
   <p>Tài khoản quản lý? <a href="https://admin-puncare.web.app/login" target="_blank">Đăng nhập</a></p>
   <ng-container *ngIf="selectedType; else selectType">
     <ng-container *ngIf="loginMode; else signupMode">
-      <form #login="ngForm">
-        <div class="form-group">
-          <label>Email: </label>
-          <input type="text" name="email" [(ngModel)]="loginForm.email" class="form-control" placeholder="Vd: abcde@puncare.vn" required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
-        </div>
-        <div class="form-group">
-          <label class="d-flex justify-content-between">
-            <span>Mật khẩu: </span>
-            <a href="javascrip:;">Quên mật khẩu?</a>
-          </label>
-          <input type="password" name="password" [(ngModel)]="loginForm.password" class="form-control" placeholder="******" required>
-        </div>
-        <button class="btn btn-block btn-static rounded-sm btn-pun-danger" (click)="submitLogin(login)" type="button">Đăng nhập</button>
-      </form>
+      <ng-container *ngIf="activeForgotPW; else loginTemplate">
+        <form #forgotPW="ngForm">
+          <div class="form-group">
+            <label>Email: </label>
+            <input type="text" name="email" [(ngModel)]="forgotForm.email" class="form-control" placeholder="Vd: abcde@puncare.vn" required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
+          </div>
+          <button class="btn btn-block btn-static rounded-sm btn-pun-danger" (click)="onSubmitForgotPW(forgotPW)" type="button">Gửi yêu cầu</button>
+        </form>
+      </ng-container>
+      <ng-template #loginTemplate>
+        <form #login="ngForm">
+          <div class="form-group">
+            <label>Email: </label>
+            <input type="text" name="email" [(ngModel)]="loginForm.email" class="form-control" placeholder="Vd: abcde@puncare.vn" required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
+          </div>
+          <div class="form-group">
+            <label class="d-flex justify-content-between">
+              <span>Mật khẩu: </span>
+              <a href="javascript:void(0);" (click)="directToForgotPW()">Quên mật khẩu?</a>
+            </label>
+            <input type="password" name="password" [(ngModel)]="loginForm.password" class="form-control" placeholder="******" required>
+          </div>
+          <button class="btn btn-block btn-static rounded-sm btn-pun-danger" (click)="onSubmitLogin(login)" type="button">Đăng nhập</button>
+        </form>
+      </ng-template>
     </ng-container>
     <ng-template #signupMode>
       <form #register="ngForm">
         <div class="form-group position-relative">
           <label>Email: </label>
           <input type="text" name="email" [(ngModel)]="registerForm.email" class="form-control" placeholder="Vd: abcde@puncare.vn" required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
-          <div *ngIf="register.submitted && register.controls.email.invalid" class="has-invalid">
+          <div *ngIf="submitRegister && register.controls.email.errors" class="has-invalid">
             <small *ngIf="register.controls.email.errors.required"><i class="fas fa-exclamation-triangle mr-2"></i>Yêu cầu nhập email</small>
             <small *ngIf="register.controls.email.errors.pattern"><i class="fas fa-exclamation-triangle mr-2"></i>Email không hợp lệ</small>
           </div>
@@ -37,7 +49,7 @@
         <div class="form-group position-relative">
           <label>Tên: </label>
           <input type="text" name="name" [(ngModel)]="registerForm.name" class="form-control" placeholder="Vd: Nguyễn Văn A" required>
-          <div *ngIf="register.submitted && register.controls.name.invalid" class="has-invalid">
+          <div *ngIf="submitRegister && register.controls.name.errors" class="has-invalid">
             <small *ngIf="register.controls.name.errors.required"><i class="fas fa-exclamation-triangle mr-2"></i>Yêu cầu nhập tên</small>
           </div>
         </div>
@@ -60,12 +72,12 @@
         <div class="form-group position-relative">
           <label>Mật khẩu: </label>
           <input type="password" name="password" [(ngModel)]="registerForm.password" class="form-control" placeholder="******" required minlength="6">
-          <div *ngIf="register.submitted && register.controls.password.invalid" class="has-invalid">
-            <small *ngIf="register.controls.password.errors.required"><i class="fas fa-exclamation-triangle mr-2"></i>Yêu cầu nhập tên</small>
+          <div *ngIf="submitRegister && register.controls.password.errors" class="has-invalid">
+            <small *ngIf="register.controls.password.errors.required"><i class="fas fa-exclamation-triangle mr-2"></i>Yêu cầu nhập mật khẩu</small>
             <small *ngIf="register.controls.password.errors.minlength"><i class="fas fa-exclamation-triangle mr-2"></i>Tối thiểu 6 kí tự</small>
           </div>
         </div>
-        <button class="btn btn-block btn-static rounded-sm btn-pun-danger" type="button" (click)="submitRegister(register)">Đăng kí</button>
+        <button class="btn btn-block btn-static rounded-sm btn-pun-danger" type="button" (click)="onSubmitRegister(register)">Đăng kí</button>
       </form>
     </ng-template>
   </ng-container>

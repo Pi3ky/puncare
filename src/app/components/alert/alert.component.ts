@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import { Subscription } from "rxjs";
-import { AlertService } from "src/app/services/alert.service";
+import { AlertService } from "src/app/_services/alert.service";
 
 @Component({
   selector: "alert",

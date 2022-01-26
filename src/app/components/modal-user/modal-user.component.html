@@ -1,0 +1,92 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{currentUser.name}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
+<div class="modal-body">
+  <tabset type="pills">
+    <tab heading="Thông tin tài khoản">
+      <form #formUser="ngForm" class="mt-3">
+        <div class="row form-group">
+          <div class="col-12 col-md-6">
+            <label class="title-input-lg">Tên</label>
+            <input type="text" name="name" class="form-control" [(ngModel)]="currentUser.name" placeholder="Nhập tên của bạn" required>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="title-input-lg">Địa chỉ email</label>
+            <input type="email" name="email" class="form-control" [(ngModel)]="currentUser.email" placeholder="Abc.123@puncare.vn" readonly>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-12 col-md-6">
+            <label class="title-input-lg">Số điện thoại</label>
+            <input type="tel" name="phone" class="form-control" [(ngModel)]="currentUser.phone" placeholder="(+84) 1234567890" required>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="title-input-lg">Địa chỉ</label>
+            <input type="text" name="address" class="form-control" [(ngModel)]="currentUser.address">
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-12 col-md-6">
+            <label class="title-input-lg">Phường / Xã</label>
+            <input type="text" name="district" class="form-control" [(ngModel)]="currentUser.district">
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="title-input-lg">Tỉnh / Thành phố</label>
+            <input type="text" name="city" class="form-control" [(ngModel)]="currentUser.city">
+          </div>
+        </div>
+        <button class="btn btn-pun-danger btn-lg btn-contact my-4" type="button" (click)="onSubmit(formUser)">Cập nhật</button>
+      </form>
+    </tab>
+    <tab heading="Đổi mật khẩu">
+      <form #formPW="ngForm" [mustMatch]="['newPassword', 'cfNewPassword']" class="mt-3">
+        <div class="position-relative mb-4 form-group">
+          <b>Mật khẩu hiện tại: </b>
+          <input type="password" name="password" [(ngModel)]="requestForm.password" class="form-control" required minlength="6">
+          <div *ngIf="submitted && formPW.controls.password.errors" class="input-errors">
+            <div *ngIf="formPW.controls.password.errors.required"><i class="fas fa-exclamation-triangle mr-2"></i>Trường bắt buộc</div>
+            <div *ngIf="formPW.controls.password.errors.minlength"><i class="fas fa-exclamation-triangle mr-2"></i>Độ dài tối thiểu là 6 kí tự</div>
+          </div>
+        </div>
+        <div class="position-relative mb-4 form-group">
+          <b>Mật khẩu mới: </b>
+          <input type="password" name="newPassword" [(ngModel)]="requestForm.newPassword" class="form-control" required minlength="6">
+          <div *ngIf="submitted && formPW.controls.newPassword.errors" class="input-errors">
+            <div *ngIf="formPW.controls.newPassword.errors.required"><i class="fas fa-exclamation-triangle mr-2"></i>Trường bắt buộc</div>
+            <div *ngIf="formPW.controls.newPassword.errors.minlength"><i class="fas fa-exclamation-triangle mr-2"></i>Độ dài tối thiểu là 6 kí tự</div>
+          </div>
+        </div>
+        <div class="position-relative mb-4 form-group">
+          <b>Nhập lại mật khẩu mới: </b>
+          <input type="password" name="cfNewPassword" [(ngModel)]="requestForm.cfNewPassword" class="form-control" required>
+          <div *ngIf="submitted && formPW.controls.cfNewPassword.errors" class="input-errors">
+            <div *ngIf="formPW.controls.cfNewPassword.errors.required"><i class="fas fa-exclamation-triangle mr-2"></i>Trường bắt buộc</div>
+            <div *ngIf="formPW.controls.cfNewPassword.errors.mustMatch"><i class="fas fa-exclamation-triangle mr-2"></i>Mật khẩu không khớp</div>
+          </div>
+        </div>
+        <div class="form-group text-right pt-3">
+          <button class="btn btn-static btn-pun-danger" (click)="submitChangePW(formPW)" type="button">Gửi thông tin</button>
+        </div>
+      </form>
+    </tab>
+  </tabset>
+</div>
+<div class="loading-overlay" *ngIf="isLoading">
+  <div class="lds-spinner">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>

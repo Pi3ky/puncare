@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
 import { shop_address } from 'src/app/common/const';
 import { PagesService } from 'src/app/pages/pages.service';
-import { PublicService } from 'src/app/services/public.service';
+import { PublicService } from 'src/app/_services/public.service';
 
 @Component({
   selector: 'app-footer',

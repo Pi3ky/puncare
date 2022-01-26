@@ -4,8 +4,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs/operators';
 import { shop_address } from 'src/app/common/const';
 import { Services } from 'src/app/common/type';
-import { AlertService } from 'src/app/services/alert.service';
-import { PublicService } from 'src/app/services/public.service';
+import { AlertService } from 'src/app/_services/alert.service';
+import { PublicService } from 'src/app/_services/public.service';
 import { PagesService } from '../pages.service';
 import * as moment from 'moment';
 
@@ -102,7 +102,7 @@ export class ServicesComponent implements OnInit {
         },
         err => {
           console.error(err);
-          this.alertService.error(err)
+          this.alertService.error(err.error)
         }
       )
     }

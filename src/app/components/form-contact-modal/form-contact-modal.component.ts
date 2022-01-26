@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Services } from 'src/app/common/type';
-import { PublicService } from 'src/app/services/public.service';
+import { PublicService } from 'src/app/_services/public.service';
 import * as moment from 'moment';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { AlertService } from 'src/app/services/alert.service';
+import { AlertService } from 'src/app/_services/alert.service';
 import { finalize } from 'rxjs/operators';
 
 @Component({
@@ -56,7 +56,7 @@ export class FormContactModalComponent implements OnInit {
         },
         err => {
           console.error(err);
-          this.alertService.error(err)
+          this.alertService.error(err.error)
         }
       )
     }

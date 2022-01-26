@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { AlertService } from 'src/app/services/alert.service';
-import { PublicService } from 'src/app/services/public.service';
+import { AlertService } from 'src/app/_services/alert.service';
+import { PublicService } from 'src/app/_services/public.service';
 import { PagesService } from '../../pages.service';
 
 @Component({
@@ -74,7 +74,7 @@ export class PayOrderComponent implements OnInit {
         },
         err => {
           console.error(err);
-          this.alertService.error(err);
+          this.alertService.error(err.error);
           this.spinner.hide();
         }
       )

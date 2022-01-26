@@ -3,11 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { fromEvent } from 'rxjs';
-import { AlertService } from 'src/app/services/alert.service';
-import { AuthService } from 'src/app/services/auth-services.service';
-import { PublicService } from 'src/app/services/public.service';
+import { AlertService } from 'src/app/_services/alert.service';
+import { AuthService } from 'src/app/_services/auth-services.service';
+import { PublicService } from 'src/app/_services/public.service';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import { LoginCustomerComponent } from '../login-customer/login-customer.component';
+import { ModalUserComponent } from '../modal-user/modal-user.component';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -27,13 +28,12 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('user'));
+    this.currentUser = this.authService.currentUserValue;
     this.orderProducts = this.publicService.orderProductValue;
-    console.log(this.orderProducts)
     fromEvent(document, 'scroll').subscribe(
       res => {
-        const croodY = window.scrollY;
-        if(croodY === 0){
+        const coordY = window.scrollY;
+        if(coordY === 0){
           this.scrollDown = false;
         } else {
           this.scrollDown = true;
@@ -86,6 +86,15 @@ export class HeaderComponent implements OnInit {
         }
       }
     )
+  }
+
+  openUserDetails(){
+    this.modalService.show(ModalUserComponent, {
+      class: "modal-md modal-dialog-centered",
+      initialState: {
+        currentUser: this.currentUser
+      }
+    })
   }
 
 }

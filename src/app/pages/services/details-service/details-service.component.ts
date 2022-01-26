@@ -5,8 +5,8 @@ import { Services } from 'src/app/common/type';
 import { PagesService } from '../../pages.service';
 import * as moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { PublicService } from 'src/app/services/public.service';
-import { AlertService } from 'src/app/services/alert.service';
+import { PublicService } from 'src/app/_services/public.service';
+import { AlertService } from 'src/app/_services/alert.service';
 @Component({
   selector: 'app-details-service',
   templateUrl: './details-service.component.html',
@@ -99,7 +99,7 @@ export class DetailsServiceComponent implements OnInit {
         },
         err => {
           console.error(err);
-          this.alertService.error(err)
+          this.alertService.error(err.error)
         }
       )
     }

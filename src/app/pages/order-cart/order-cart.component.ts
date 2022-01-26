@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmModalComponent } from 'src/app/components/confirm-modal/confirm-modal.component';
-import { PublicService } from 'src/app/services/public.service';
+import { PublicService } from 'src/app/_services/public.service';
 
 @Component({
   selector: 'app-order-cart',

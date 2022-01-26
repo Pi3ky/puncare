@@ -39,7 +39,7 @@
             </a>
             <ul id="login-mode-dropdown" class="dropdown-menu mt-0 py-0 shadow border-0" role="menu"
               aria-labelledby="login-mode">
-              <li role="menuitem"><a class="dropdown-item" routerLink="/admin/services" routerLinkActive="active">Tài
+              <li role="menuitem"><a class="dropdown-item" href="javascript:;" (click)="openUserDetails()">Tài
                   khoản</a></li>
               <li role="menuitem"><a class="dropdown-item cursor-pointer" (click)="logout()">Đăng xuất</a></li>
             </ul>
@@ -79,7 +79,7 @@
         </a>
         <ul id="login-mode-dropdown" class="dropdown-menu mt-0 py-0 shadow border-0" role="menu"
           aria-labelledby="login-mode">
-          <li role="menuitem"><a class="dropdown-item" routerLink="/admin/services" routerLinkActive="active">Tài khoản</a></li>
+          <li role="menuitem"><a class="dropdown-item" routerLink="/user">Tài khoản</a></li>
           <li role="menuitem"><a class="dropdown-item cursor-pointer" (click)="logout()">Đăng xuất</a></li>
         </ul>
       </li>

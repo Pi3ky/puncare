@@ -3,8 +3,8 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs/operators';
 import { Products } from 'src/app/common/type';
-import { AlertService } from 'src/app/services/alert.service';
-import { PublicService } from 'src/app/services/public.service';
+import { AlertService } from 'src/app/_services/alert.service';
+import { PublicService } from 'src/app/_services/public.service';
 import { DetailsProductComponent } from './details-product/details-product.component';
 
 @Component({
@@ -43,7 +43,7 @@ export class ProductsComponent implements OnInit {
       },
       err => {
         console.error(err);
-        this.alertService.error(err);
+        this.alertService.error(err.error);
       }
     )
   }
@@ -57,7 +57,7 @@ export class ProductsComponent implements OnInit {
       },
       err => {
         console.error(err);
-        this.alertService.error(err);
+        this.alertService.error(err.error);
       }
     )
   }
