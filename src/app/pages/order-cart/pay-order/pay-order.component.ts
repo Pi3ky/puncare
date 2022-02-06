@@ -23,6 +23,7 @@ export class PayOrderComponent implements OnInit {
     totalPrice: 0,
     post_code: '',
     payment: 'banking',
+    status: 'created',
     note: '',
     items: []
   };
