@@ -15,11 +15,13 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AlertComponent } from './components/alert/alert.component';
 import { ToastrModule } from 'ngx-toastr';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
     AlertComponent,
     ResetPasswordComponent,
+    NotFoundComponent,
 
   ],
   imports: [

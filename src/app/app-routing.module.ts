@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
     path: '',
     redirectTo: 'pages',
     pathMatch: 'full'
-  }
+  },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
