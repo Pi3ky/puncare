@@ -28,7 +28,7 @@ export class FormContactModalComponent implements OnInit {
     email: '',
     service_id: null,
     service_name: '',
-    date_visit: new Date,
+    date_visit: '',
     time_visit: null,
     msg: ''
   };
@@ -53,11 +53,12 @@ export class FormContactModalComponent implements OnInit {
   onSubmit(form){
     form.control.markAllAsTouched();
     if(form.valid){
-      this.isLoading = true;
       const body = {
         ...this.contactForm,
-        date_visit: moment(this.contactForm.date_visit).format("DD/MM/YYYY")
-      }
+        date_visit: Date.parse(this.contactForm.date_visit)
+      };
+      this.isLoading = true;
+      console.log(body)
       this.publicService.sendContact(body).pipe(finalize(() => this.isLoading = false)).subscribe(
         res => {
           form.reset();

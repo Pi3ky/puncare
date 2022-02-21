@@ -10,15 +10,10 @@ export const open_hours = {
   weekend: "9h - 17h"
 }
 
-// export const urlApi = 'https://punapi.herokuapp.com';
-export const urlApi = 'http://localhost:3000';
+export const urlApi = 'https://punapi.herokuapp.com';
+// export const urlApi = 'http://localhost:3000';
 
 export const apiKeyTiny = "i1u3gxyfdlozuc01lhruv3w3nefuim410brum9o7yvusw64g"
-
-export const Role = {
-  ADMIN: 'admin',
-  CUSTOMER: 'customer'
-}
 
 export const typeProduct = [
   { type_id: '61cc2d054922a34fdb8e02e9', type_name: 'Đồ chơi' },

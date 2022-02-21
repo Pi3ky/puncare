@@ -13,7 +13,7 @@
               <h3 class="font-weight-bold">{{service.title}}</h3>
               <p>{{service.description}}</p>
               <div class="d-flex mt-auto">
-                <ng-container *ngIf="service.price; else noPrice">
+                <ng-container *ngIf="service.price && service.price > 0; else noPrice">
                   <span class="badge badge-pun-secondary mr-4">{{service.price | number : "4.0-2"}} {{service.currency}}</span>
                 </ng-container>
                 <ng-template #noPrice>
@@ -61,7 +61,7 @@
             </div>
             <div class="col-12 col-md-6">
               <label class="title-input-lg">Địa chỉ email</label>
-              <input type="email" name="email" class="form-control input-contact" [(ngModel)]="contactForm.email" placeholder="Abc.123@puncare.vn">
+              <input type="email" name="email" class="form-control input-contact" [(ngModel)]="contactForm.email" placeholder="Abc.123@puncare.vn" required>
             </div>
           </div>
           <div class="row form-group">
@@ -77,7 +77,8 @@
           <div class="row form-group">
             <div class="col-12 col-md-6">
               <label class="title-input-lg">Thời gian</label>
-              <input type="text" name="date_visit" placeholder="Chọn ngày" [(ngModel)]="contactForm.date_visit" class="form-control input-contact" [bsConfig]="dateConfig" bsDatepicker >
+              <input type="text" name="date_visit" hidden [(ngModel)]="contactForm.date_visit" class="form-control input-contact">
+              <button class="btn btn-as-form-control" [bsConfig]="dateConfig" bsDatepicker (bsValueChange)="selectDate($event)">{{selectedDate || 'Chọn ngày hẹn'}}</button>
             </div>
             <div class="col-12 col-md-6">
               <label class="title-input-lg">Lịch hẹn</label>

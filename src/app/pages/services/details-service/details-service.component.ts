@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import { finalize, map, switchMap } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 import { Services } from 'src/app/common/type';
 import { PagesService } from '../../pages.service';
-import * as moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { PublicService } from 'src/app/_services/public.service';
 import { AlertService } from 'src/app/_services/alert.service';
@@ -21,19 +20,22 @@ export class DetailsServiceComponent implements OnInit {
     isAnimated: true,
     minDate: new Date(),
     showWeekNumbers: false,
-    dateInputFormat: 'DD/MM/YYYY',
   }
+  selectedDate: string = new Date().toLocaleDateString();
+  loadService = false;
   bookingForm = {
     name: '',
     phone: '',
     email: '',
     service_id: null,
     service_name: '',
-    date_visit: new Date,
+    date_visit: Date.now(),
     time_visit: null,
     msg: ''
   };
+;
   service: Services;
+  currentUser: any;
   constructor(
     private route: ActivatedRoute,
     public pageService: PagesService,
@@ -42,37 +44,42 @@ export class DetailsServiceComponent implements OnInit {
     private authService: AuthService,
     private alertService: AlertService,
   ) {
-
-   }
+  }
 
   ngOnInit() {
-    this.authService.currentUser.subscribe(user => {
-      if (user) {
-        this.bookingForm.name = user.name;
-        this.bookingForm.email = user.email;
-        this.bookingForm.phone = user.phone;
-      } else {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.getCurrentService(id);
+    this.getServices();
+    this.authService.currentUser.subscribe(
+      user => {
+        this.currentUser = user;
         this.bookingForm = this.getDefaultForm();
       }
-    })
-    this.route.paramMap.pipe(
-      map(params => params.get('id')),
-      switchMap(id => this.publicService.getServiceDetail(id))
-    ).subscribe(service => {
-      this.service = service;
-      this.bookingForm.service_id = this.service._id;
-      this.getServices();
-    })
+    )
+  }
+
+  getCurrentService(id) {
+    this.spinner.show();
+    this.publicService.getServiceDetail(id).pipe(finalize(() => this.spinner.hide())).subscribe(
+      res => {
+        this.service = res;
+        this.bookingForm = this.getDefaultForm();
+      },
+      err => {
+        this.alertService.error(err);
+        console.error(err)
+      }
+    )
   }
 
   getDefaultForm(){
     return {
-      name: '',
-      phone: '',
-      email: '',
-      service_id: this.service._id,
-      service_name: '',
-      date_visit: new Date,
+      name: this.currentUser ? this.currentUser.name : '',
+      phone: this.currentUser ? this.currentUser.phone : '',
+      email: this.currentUser ? this.currentUser.email : '',
+      service_id: this.service ? this.service._id : null,
+      service_name: this.service ? this.service.title : '',
+      date_visit: Date.now(),
       time_visit: null,
       msg: ''
     }
@@ -86,9 +93,14 @@ export class DetailsServiceComponent implements OnInit {
    * Get data services
    */
   getServices(){
-    this.publicService.getServices({}).subscribe(
+    this.loadService = true;
+    this.publicService.getServices({}).pipe(finalize(() => this.loadService = false)).subscribe(
       res => {
         this.listServices = res.data;
+      },
+      err => {
+        console.error(err);
+        this.alertService.error(err.error);
       }
     )
   }
@@ -96,21 +108,19 @@ export class DetailsServiceComponent implements OnInit {
   submitBooking(form){
     form.control.markAllAsTouched();
     if(form.valid){
-      this.spinner.show();
       const body = {
         ...this.bookingForm,
-        date_visit: moment(this.bookingForm.date_visit).format("DD/MM/YYYY")
       }
+      this.spinner.show();
       this.publicService.sendContact(body).pipe(finalize(() => this.spinner.hide())).subscribe(
         res => {
           form.reset();
           this.alertService.success('Chúng tôi sẽ sớm liên hệ với bạn!');
           this.bookingForm = this.getDefaultForm();
-          form.reset();
         },
         err => {
           console.error(err);
-          this.alertService.error(err.error)
+          this.alertService.error(err.error);
         }
       )
     }
@@ -120,4 +130,8 @@ export class DetailsServiceComponent implements OnInit {
     this.bookingForm.service_name = service.title;
   }
 
+  selectDate(evt) {
+    this.bookingForm.date_visit = Date.parse(evt);
+    this.selectedDate = new Date(evt).toLocaleDateString("vi-VN");
+  }
 }

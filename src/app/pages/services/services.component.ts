@@ -7,7 +7,6 @@ import { Services } from 'src/app/common/type';
 import { AlertService } from 'src/app/_services/alert.service';
 import { PublicService } from 'src/app/_services/public.service';
 import { PagesService } from '../pages.service';
-import * as moment from 'moment';
 import { AuthService } from 'src/app/_services/auth-services.service';
 
 @Component({
@@ -24,13 +23,14 @@ export class ServicesComponent implements OnInit {
     showWeekNumbers: false,
     dateInputFormat: 'DD/MM/YYYY',
   }
+  selectedDate: string = new Date().toLocaleDateString();
   contactForm = {
     name: '',
     phone: '',
     email: '',
     service_id: null,
     service_name: '',
-    date_visit: new Date,
+    date_visit: Date.now(),
     time_visit: null,
     msg: ''
   };
@@ -43,6 +43,7 @@ export class ServicesComponent implements OnInit {
   }
   totalItems = 0;
   shop_address = shop_address;
+  currentUser: any;
   constructor(
     public pageService: PagesService,
     private spinner: NgxSpinnerService,
@@ -54,16 +55,11 @@ export class ServicesComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.authService.currentUser.subscribe(user => {
-      if (user) {
-        this.contactForm.name = user.name;
-        this.contactForm.email = user.email;
-        this.contactForm.phone = user.phone;
-      } else {
-        this.contactForm = this.getDefaultForm();
-      }
-    })
     this.getServices();
+    this.authService.currentUser.subscribe(user => {
+      this.currentUser = user;
+      this.contactForm = this.getDefaultForm();
+    })
   }
 
   /**
@@ -91,16 +87,16 @@ export class ServicesComponent implements OnInit {
   }
 
   onSubmit(form){
+    form.control.markAllAsTouched();
     if(form.valid){
       this.spinner.show();
       const body = {
         ...this.contactForm,
-        date_visit: moment(this.contactForm.date_visit).format("DD/MM/YYYY")
       }
       this.publicService.sendContact(body).pipe(finalize(() => this.spinner.hide())).subscribe(
         res => {
-          this.contactForm = this.getDefaultForm();
           form.reset();
+          this.contactForm = this.getDefaultForm();
           this.alertService.success('Gửi tin nhắn thành công!');
         },
         err => {
@@ -113,12 +109,12 @@ export class ServicesComponent implements OnInit {
 
   getDefaultForm(){
     return {
-      name: '',
-      phone: '',
-      email: '',
+      name: this.currentUser ? this.currentUser.name : '',
+      phone: this.currentUser ? this.currentUser.phone : '',
+      email: this.currentUser ? this.currentUser.email : '',
       service_id: null,
       service_name: '',
-      date_visit: new Date,
+      date_visit: Date.now(),
       time_visit: null,
       msg: ''
     }
@@ -126,6 +122,11 @@ export class ServicesComponent implements OnInit {
 
   setService(service) {
     this.contactForm.service_name = service.title;
+  }
+
+  selectDate(evt) {
+    this.contactForm.date_visit = Date.parse(evt);
+    this.selectedDate = new Date(evt).toLocaleDateString("vi-VN");
   }
 
   changePage(evt) {

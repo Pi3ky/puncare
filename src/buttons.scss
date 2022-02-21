@@ -44,3 +44,17 @@ button:focus, .btn:focus {
 .btn:disabled, .btn.btn:disabled {
   pointer-events: none;
 }
+
+.btn-as-form-control {
+  height: 60px;
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+  padding: 8px 20px;
+  font-size: 16px;
+  width: 100%;
+  text-align: left;
+}
+
+.form-control.ng-invalid.ng-touched ~ .btn-as-form-control {
+  border: 1px solid #f97561;
+}
