@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { PublicService } from 'src/app/_services/public.service';
 import { AlertService } from 'src/app/_services/alert.service';
+import { AuthService } from 'src/app/_services/auth-services.service';
 @Component({
   selector: 'app-details-service',
   templateUrl: './details-service.component.html',
@@ -38,12 +39,22 @@ export class DetailsServiceComponent implements OnInit {
     public pageService: PagesService,
     private spinner: NgxSpinnerService,
     public publicService: PublicService,
+    private authService: AuthService,
     private alertService: AlertService,
   ) {
 
    }
 
   ngOnInit() {
+    this.authService.currentUser.subscribe(user => {
+      if (user) {
+        this.bookingForm.name = user.name;
+        this.bookingForm.email = user.email;
+        this.bookingForm.phone = user.phone;
+      } else {
+        this.bookingForm = this.getDefaultForm();
+      }
+    })
     this.route.paramMap.pipe(
       map(params => params.get('id')),
       switchMap(id => this.publicService.getServiceDetail(id))

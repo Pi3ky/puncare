@@ -52,7 +52,6 @@ export class OrderCartComponent implements OnInit {
           this.orders.total -= product.quantity;
           this.totalPrice -= (product.quantity * product.price);
           this.publicService.setOrderProductValue(this.orders);
-          console.log(this.orders)
         }
       }
     )

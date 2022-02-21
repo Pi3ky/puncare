@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AlertService } from 'src/app/_services/alert.service';
+import { AuthService } from 'src/app/_services/auth-services.service';
 import { PublicService } from 'src/app/_services/public.service';
 import { PagesService } from '../../pages.service';
 
@@ -40,17 +41,50 @@ export class PayOrderComponent implements OnInit {
     },
   ]
   ordersList = [];
+  // currentUser: any;
   constructor(
     private publicService: PublicService,
+    private authService: AuthService,
     private pagesService: PagesService,
     private alertService: AlertService,
     private router: Router,
     private spinner: NgxSpinnerService,
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.ordersList = this.publicService.orderProductValue.orders || [];
-    this.calcTotalPrice()
+    this.authService.currentUser.subscribe(user => {
+      if (user) {
+        this.payForm.name = user.name;
+        this.payForm.phone = user.phone;
+        this.payForm.city = user.city;
+        this.payForm.district = user.district;
+        this.payForm.address = user.address;
+        this.payForm.email = user.email;
+        this.calcTotalPrice();
+      } else {
+        this.payForm = this.getPayFormDefault();
+        this.calcTotalPrice();
+      }
+    })
+  }
+
+  getPayFormDefault() {
+    return {
+      name: '',
+      address: '',
+      city: '',
+      phone: '',
+      email: '',
+      district: '',
+      totalPrice: 0,
+      post_code: '',
+      payment: 'banking',
+      status: 'created',
+      note: '',
+      items: []
+    }
   }
 
   calcTotalPrice() {

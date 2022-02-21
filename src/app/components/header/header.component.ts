@@ -76,6 +76,8 @@ export class HeaderComponent implements OnInit {
             res => {
               this.currentUser = null;
               localStorage.removeItem('user');
+              localStorage.removeItem('token');
+              this.authService.setCurrentUserValue(null);
               this.spinner.hide();
             },
             err => {

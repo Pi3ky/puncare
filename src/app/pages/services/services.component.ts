@@ -8,6 +8,7 @@ import { AlertService } from 'src/app/_services/alert.service';
 import { PublicService } from 'src/app/_services/public.service';
 import { PagesService } from '../pages.service';
 import * as moment from 'moment';
+import { AuthService } from 'src/app/_services/auth-services.service';
 
 @Component({
   selector: 'app-services',
@@ -47,11 +48,21 @@ export class ServicesComponent implements OnInit {
     private spinner: NgxSpinnerService,
     public publicService: PublicService,
     private router: Router,
+    private authService: AuthService,
     private alertService: AlertService
   ) {
    }
 
   ngOnInit() {
+    this.authService.currentUser.subscribe(user => {
+      if (user) {
+        this.contactForm.name = user.name;
+        this.contactForm.email = user.email;
+        this.contactForm.phone = user.phone;
+      } else {
+        this.contactForm = this.getDefaultForm();
+      }
+    })
     this.getServices();
   }
 
@@ -76,15 +87,7 @@ export class ServicesComponent implements OnInit {
    * @param service
    */
   openService(service: Services){
-    console.log(service._id);
     this.router.navigate(['/pages/services', service._id])
-  }
-
-  /**
-   * Select services
-   */
-  selectService(evt: Services){
-    console.log(evt)
   }
 
   onSubmit(form){

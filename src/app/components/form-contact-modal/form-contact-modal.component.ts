@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { AlertService } from 'src/app/_services/alert.service';
 import { finalize } from 'rxjs/operators';
+import { AuthService } from 'src/app/_services/auth-services.service';
 
 @Component({
   selector: 'app-form-contact-modal',
@@ -34,11 +35,20 @@ export class FormContactModalComponent implements OnInit {
   constructor(
     public publicService: PublicService,
     public bsModalRef: BsModalRef,
+    private authService: AuthService,
     private alertService: AlertService,
   ) { }
 
   ngOnInit() {
+    this.authService.currentUser.subscribe(user => {
+      if (user) {
+        this.contactForm.name = user.name;
+        this.contactForm.email = user.email;
+        this.contactForm.phone = user.phone;
+      }
+    })
   }
+
 
   onSubmit(form){
     form.control.markAllAsTouched();

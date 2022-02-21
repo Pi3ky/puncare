@@ -25,7 +25,6 @@ export class ModalUserComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.currentUser)
   }
 
   onSubmit(form) {
@@ -34,7 +33,6 @@ export class ModalUserComponent implements OnInit {
       this.isLoading = true;
       this.authService.updateUser(this.currentUser, this.currentUser._id).pipe(finalize(() => this.isLoading = false)).subscribe(
         res => {
-          console.log(res)
           this.alertService.success("Cập nhật thành công thành công!");
         }, err => {
           console.error(err);
@@ -55,7 +53,6 @@ export class ModalUserComponent implements OnInit {
       }
       this.authService.changePassword(body, this.currentUser._id).pipe(finalize(() => this.isLoading = false)).subscribe(
         res => {
-          console.log(res)
           this.alertService.success("Đổi mật khẩu thành công!");
         }, err => {
           console.error(err);
