@@ -14,13 +14,6 @@ import { AuthService } from 'src/app/_services/auth-services.service';
 })
 export class FormContactModalComponent implements OnInit {
   listServices: Services[] = [];
-  dateConfig = {
-    containerClass: 'theme-red',
-    isAnimated: true,
-    minDate: new Date(),
-    showWeekNumbers: false,
-    dateInputFormat: 'DD/MM/YYYY',
-  }
   isLoading = false;
   contactForm = {
     name: '',
@@ -49,16 +42,17 @@ export class FormContactModalComponent implements OnInit {
     })
   }
 
+  pickDate(date) {
+    this.contactForm.date_visit = date;
+  }
 
   onSubmit(form){
     form.control.markAllAsTouched();
     if(form.valid){
       const body = {
-        ...this.contactForm,
-        date_visit: Date.parse(this.contactForm.date_visit)
+        ...this.contactForm
       };
       this.isLoading = true;
-      console.log(body)
       this.publicService.sendContact(body).pipe(finalize(() => this.isLoading = false)).subscribe(
         res => {
           form.reset();

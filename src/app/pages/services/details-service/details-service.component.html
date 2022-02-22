@@ -44,8 +44,7 @@
             <ng-select [items]="listServices" bindValue="_id" [loading]="loadService" class="custom-lg-select" [clearable]="false" [placeholder]="'Chọn dịch vụ'" (change)="setService($event)" name="service" [(ngModel)]="bookingForm.service_id" bindLabel="title"></ng-select>
           </div>
           <div class="form-group">
-            <input type="text" name="date_visit" hidden [(ngModel)]="bookingForm.date_visit" class="form-control input-contact">
-            <button class="btn btn-as-form-control" [bsConfig]="dateConfig" bsDatepicker (bsValueChange)="selectDate($event)">{{selectedDate || 'Chọn ngày hẹn'}}</button>
+            <picker-date [customCss]="'input-contact filter-lg'" (selected)="pickDate($event)"></picker-date>
           </div>
           <div class="form-group">
             <ng-select [items]="publicService.schedules" [(ngModel)]="bookingForm.time_visit" [clearable]="false" [searchable]="false" bindValue="id" class="custom-lg-select" [placeholder]="'Chọn thời gian'" name="time_visit" bindLabel="name"></ng-select>

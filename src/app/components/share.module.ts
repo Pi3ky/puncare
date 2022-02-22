@@ -12,17 +12,20 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { MustMatchDirective } from '../directives';
 import { ModalUserComponent } from './modal-user/modal-user.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { Daterangepicker } from 'ng2-daterangepicker';
+import { PickerDateComponent } from './picker-date/picker-date.component';
 
-const E_MODULES =  [NgxPaginationModule, CarouselModule, FormsModule, ReactiveFormsModule ];
-const E_COMPONENTS =  [PaginationComponent ];
+const E_MODULES =  [NgxPaginationModule, CarouselModule, FormsModule, ReactiveFormsModule];
+const E_COMPONENTS =  [PaginationComponent, PickerDateComponent ];
 @NgModule({
-  declarations: [ ConfirmModalComponent, PaginationComponent, LoginCustomerComponent, FormContactModalComponent, MustMatchDirective, ModalUserComponent],
+  declarations: [ ConfirmModalComponent, PaginationComponent, LoginCustomerComponent, FormContactModalComponent, MustMatchDirective, ModalUserComponent, PickerDateComponent],
   imports: [
     CommonModule,
     NgxPaginationModule,
     BsDatepickerModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
+    Daterangepicker,
     TabsModule.forRoot(),
     NgSelectModule,
   ],

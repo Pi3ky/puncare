@@ -30,7 +30,7 @@ export class ServicesComponent implements OnInit {
     email: '',
     service_id: null,
     service_name: '',
-    date_visit: Date.now(),
+    date_visit: '',
     time_visit: null,
     msg: ''
   };
@@ -114,7 +114,7 @@ export class ServicesComponent implements OnInit {
       email: this.currentUser ? this.currentUser.email : '',
       service_id: null,
       service_name: '',
-      date_visit: Date.now(),
+      date_visit: '',
       time_visit: null,
       msg: ''
     }
@@ -124,13 +124,13 @@ export class ServicesComponent implements OnInit {
     this.contactForm.service_name = service.title;
   }
 
-  selectDate(evt) {
-    this.contactForm.date_visit = Date.parse(evt);
-    this.selectedDate = new Date(evt).toLocaleDateString("vi-VN");
-  }
 
   changePage(evt) {
     this.search.page = evt.page;
     this.getServices();
+  }
+
+  pickDate(date) {
+    this.contactForm.date_visit = date;
   }
 }

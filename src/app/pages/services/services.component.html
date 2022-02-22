@@ -77,8 +77,7 @@
           <div class="row form-group">
             <div class="col-12 col-md-6">
               <label class="title-input-lg">Thời gian</label>
-              <input type="text" name="date_visit" hidden [(ngModel)]="contactForm.date_visit" class="form-control input-contact">
-              <button class="btn btn-as-form-control" [bsConfig]="dateConfig" bsDatepicker (bsValueChange)="selectDate($event)">{{selectedDate || 'Chọn ngày hẹn'}}</button>
+              <picker-date [customCss]="'input-contact filter-lg'" (selected)="pickDate($event)"></picker-date>
             </div>
             <div class="col-12 col-md-6">
               <label class="title-input-lg">Lịch hẹn</label>

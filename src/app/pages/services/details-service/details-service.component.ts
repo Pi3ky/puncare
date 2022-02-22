@@ -130,8 +130,7 @@ export class DetailsServiceComponent implements OnInit {
     this.bookingForm.service_name = service.title;
   }
 
-  selectDate(evt) {
-    this.bookingForm.date_visit = Date.parse(evt);
-    this.selectedDate = new Date(evt).toLocaleDateString("vi-VN");
+  pickDate(date) {
+    this.bookingForm.date_visit = date;
   }
 }
