@@ -30,7 +30,7 @@ export class ServicesComponent implements OnInit {
     email: '',
     service_id: null,
     service_name: '',
-    date_visit: '',
+    date_visit: Date.now(),
     time_visit: null,
     msg: ''
   };
@@ -114,7 +114,7 @@ export class ServicesComponent implements OnInit {
       email: this.currentUser ? this.currentUser.email : '',
       service_id: null,
       service_name: '',
-      date_visit: '',
+      date_visit: Date.now(),
       time_visit: null,
       msg: ''
     }
