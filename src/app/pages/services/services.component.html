@@ -12,12 +12,12 @@
             <div class="d-flex flex-column">
               <h3 class="font-weight-bold">{{service.title}}</h3>
               <p>{{service.description}}</p>
-              <div class="d-flex mt-auto">
+              <div class="d-flex mt-auto flex-wrap">
                 <ng-container *ngIf="service.price && service.price > 0; else noPrice">
-                  <span class="badge badge-pun-secondary mr-4">{{service.price | number : "4.0-2"}} {{service.currency}}</span>
+                  <span class="badge badge-pun-secondary mr-4 my-2">{{service.price | number : "4.0-2"}} {{service.currency}}</span>
                 </ng-container>
                 <ng-template #noPrice>
-                  <span class="badge badge-pun-secondary mr-4">Liên hệ</span>
+                  <span class="badge badge-pun-secondary mr-4 my-2">Liên hệ</span>
                 </ng-template>
                 <span class="badge badge-pun-secondary" *ngIf="service?.time">{{service.time}}</span>
               </div>

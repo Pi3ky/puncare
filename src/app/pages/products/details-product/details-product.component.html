@@ -4,11 +4,11 @@
   </button>
 </div>
 <div class="modal-body">
-  <div class="d-flex">
+  <div class="d-flex flex-wrap">
     <div class="img-box p-4">
       <img [src]="product.image" [alt]="product.title" class="w-100">
     </div>
-    <div class="w-100 pr-4">
+    <div class="pr-4">
       <h4 class="font-weight-bold">{{product.title}}</h4>
       <p>
         <span>Tình trạng: </span>
@@ -31,7 +31,7 @@
         <div class="form-group position-relative">
           <label>Số lượng: </label>
           <div class=" position-relative">
-            <input type="number" [(ngModel)]="selectedProduct.quantity" name="quantity" class="form-control w-50" min="1">
+            <input type="number" [(ngModel)]="selectedProduct.quantity" name="quantity" class="form-control" min="1">
             <small *ngIf="selectedProduct.quantity < 1" class="has-invalid alert-inline">
               <i class="fas fa-exclamation-triangle mr-2"></i>Cần ít nhất 1 sản phẩm
             </small>
