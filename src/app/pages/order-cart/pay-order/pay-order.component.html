@@ -1,7 +1,7 @@
 <div class="container py-5">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a routerLink="/pages/home" routerLinkActive="active">Trang chủ</a></li>
+      <li class="breadcrumb-item"><a routerLink="/home" routerLinkActive="active">Trang chủ</a></li>
       <li class="breadcrumb-item active" aria-current="page">Thanh toán</li>
     </ol>
   </nav>
@@ -28,12 +28,16 @@
           <input type="text" name="address" class="form-control" placeholder="Địa chỉ người nhận" [(ngModel)]="payForm.address" required>
         </div>
         <div class="form-group">
-          <label>Phường / Xã</label>
-          <input type="text" name="district" class="form-control" [(ngModel)]="payForm.district">
+          <label>Tỉnh/Thành phố <b class="text-danger">*</b></label>
+          <ng-select [items]="publicService.dataProvinces" (change)="specificProvince($event)" required [(ngModel)]="payForm.provinceId" [clearable]="false" bindValue="province_id" name="provinceId" bindLabel="province_name"></ng-select>
         </div>
         <div class="form-group">
-          <label>Tỉnh / Thành phố <b class="text-danger">*</b></label>
-          <input type="text" name="city" class="form-control" [(ngModel)]="payForm.city" required>
+          <label>Quận/Huyện</label>
+          <ng-select [items]="dataDistricts" (change)="specificDistrict($event)" notFoundText="Hãy chọn tỉnh thành của bạn" required [(ngModel)]="payForm.districtId" [clearable]="false" bindValue="district_id" name="districtId" bindLabel="district_name"></ng-select>
+        </div>
+        <div class="form-group">
+          <label>Phường/Xã</label>
+          <ng-select [items]="dataWards" (change)="specificWard($event)" notFoundText="Hãy chọn quận huyện của bạn" required [(ngModel)]="payForm.wardId" [clearable]="false" bindValue="ward_id" name="wardId" bindLabel="ward_name"></ng-select>
         </div>
         <div class="form-group">
           <label>Mã bưu điện</label>
@@ -45,7 +49,10 @@
         </div>
       </div>
       <div class="col-12 col-md-6">
-        <h4>Thông tin đơn hàng</h4>
+        <div class="d-flex align-items-center">
+          <h4>Thông tin đơn hàng</h4>
+          <a class="ml-3" href="javascript:;">#{{payForm.bankingCode}}</a>
+        </div>
         <div class="table-responsive">
           <table class="table table-bordered">
             <thead>
@@ -84,11 +91,18 @@
           <div class="well well-lg card card-block card-header mb-3">
             <p class="font-italic">{{item.title}}</p>
             <ng-container *ngIf="item.id === 'banking'; else standard">
-              <p>Khách hàng vui lòng thanh toán đơn hàng bằng cách chuyển tiền đến STK:</p>
-              <p>STK: <b>45010006367712</b></p>
-              <p>Chủ tài khoản: <b>BUI DINH KHANG</b></p>
-              <p>BIDV - CN Hà Tây</p>
-              <i>Quý khách vui lòng ghi số tài khoản thanh toán hoặc tên của quý khách vào phần <b>ghi chú</b> để tránh trường hợp thanh toán nhầm</i>
+              <div class="row">
+                <div class="col-12 col-lg-7">
+                  <p>Khách hàng vui lòng thanh toán đơn hàng bằng cách chuyển tiền đến STK:</p>
+                  <p>Số tài khoản: <b>45010006367712</b></p>
+                  <p>Chủ tài khoản: <b>BUI DINH KHANG</b></p>
+                  <p>Chi nhánh: <b>BIDV - CN HA TAY</b></p>
+                  <p>Nội dung: <b>{{payForm.bankingCode}}</b></p>
+                </div>
+                <div class="col-12 col-lg-5">
+                  <img [src]="dataQr.qrDataURL" alt="banking" width="400" srcset="" *ngIf="dataQr">
+                </div>
+              </div>
             </ng-container>
             <ng-template #standard>
               <p>Đơn hàng sẽ được chuyển đến địa chỉ của quý khách trong khoảng từ 2 - 7 ngày (nội/ngoại thành Hà Nội). Và từ 4 - 10 (các tỉnh thành khác)</p>

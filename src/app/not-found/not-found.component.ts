@@ -14,7 +14,7 @@ export class NotFoundComponent implements OnInit {
   }
 
   goToHome() {
-    this.router.navigate(['/pages']);
+    this.router.navigate(['/home']);
   }
 
 }

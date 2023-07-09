@@ -1,14 +1,15 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { urlApi } from '../common/const';
-import { Services } from '../common/type';
+import { District, Province, Services } from '../common/type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PublicService {
   public services: Services[] = [];
+  public dataProvinces: Province[] = [];
   private orderProductSbj: BehaviorSubject<any>;
   public orderProductsObj: Observable<any>;
   STORAGE_KEY = 'orders';
@@ -53,5 +54,25 @@ export class PublicService {
 
   sendContact(body): Observable<any> {
     return this.http.post<any>(`${urlApi}/api/contacts/create`, body);
+  }
+
+  getProvinces(): Observable<any> {
+    return this.http.get<any>("https://vapi.vnappmob.com/api/province");
+  }
+
+  getDistrict(provinceId): Observable<any> {
+    return this.http.get<any>(`https://vapi.vnappmob.com/api/province/district/${provinceId}`)
+  }
+
+  getWard(districtId): Observable<any> {
+    return this.http.get<any>(`https://vapi.vnappmob.com/api/province/ward/${districtId}`)
+  }
+
+  createQRBanking(body): Observable<any> {
+    return this.http.post<any>(`https://api.vietqr.io/v2/generate`, body)
+  }
+
+  createOrder(body):Observable<any> {
+    return this.http.post<any>(`${urlApi}/api/orders/create`, body);
   }
 }

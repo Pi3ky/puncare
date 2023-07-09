@@ -23,3 +23,25 @@ export interface Products {
   type_id: string,
   type_name: string
 }
+
+export interface Province {
+  province_name: string,
+  province_id: string,
+  province_type: string
+}
+
+export interface District {
+  district_id: string,
+  district_name: string,
+  district_type: string,
+  lat: any,
+  lng: any,
+  province_id: string
+}
+
+export interface Ward {
+  district_id: string,
+  ward_name: string,
+  ward_type: string,
+  ward_id: string
+}

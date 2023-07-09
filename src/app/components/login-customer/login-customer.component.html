@@ -47,6 +47,14 @@
           </div>
         </div>
         <div class="form-group position-relative">
+          <label>Mật khẩu: </label>
+          <input type="password" name="password" [(ngModel)]="registerForm.password" class="form-control" placeholder="******" required minlength="6">
+          <div *ngIf="submitRegister && register.controls.password.errors" class="has-invalid">
+            <small *ngIf="register.controls.password.errors.required"><i class="fas fa-exclamation-triangle mr-2"></i>Yêu cầu nhập mật khẩu</small>
+            <small *ngIf="register.controls.password.errors.minlength"><i class="fas fa-exclamation-triangle mr-2"></i>Tối thiểu 6 kí tự</small>
+          </div>
+        </div>
+        <div class="form-group position-relative">
           <label>Tên: </label>
           <input type="text" name="name" [(ngModel)]="registerForm.name" class="form-control" placeholder="Vd: Nguyễn Văn A" required>
           <div *ngIf="submitRegister && register.controls.name.errors" class="has-invalid">
@@ -57,24 +65,36 @@
           <label>Số điện thoại: </label>
           <input type="text" name="phone" [(ngModel)]="registerForm.phone" class="form-control" placeholder="Vd: 0987654321">
         </div>
-        <div class="form-group position-relative">
-          <label>Địa chỉ: </label>
-          <input type="text" name="address" [(ngModel)]="registerForm.address" class="form-control">
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <div class="form-group position-relative">
+              <label>Tỉnh/Thành phố: </label>
+              <ng-select [items]="publicService.dataProvinces" (change)="specificProvince($event)" required
+                [(ngModel)]="registerForm.provinceId" bindValue="province_id" name="provinceId" bindLabel="province_name"></ng-select>
+            </div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <div class="form-group position-relative">
+              <label>Quận/Huyện: </label>
+              <ng-select [items]="dataDistricts" (change)="specificDistrict($event)" required notFoundText="Hãy chọn tỉnh thành của bạn"
+                [(ngModel)]="registerForm.districtId" bindValue="district_id" name="districtId" bindLabel="district_name"></ng-select>
+            </div>
+          </div>
         </div>
-        <div class="form-group position-relative">
-          <label>Phường / Xã: </label>
-          <input type="text" name="district" [(ngModel)]="registerForm.district" class="form-control">
-        </div>
-        <div class="form-group position-relative">
-          <label>Tỉnh / Thành phố: </label>
-          <input type="text" name="city" [(ngModel)]="registerForm.city" class="form-control">
-        </div>
-        <div class="form-group position-relative">
-          <label>Mật khẩu: </label>
-          <input type="password" name="password" [(ngModel)]="registerForm.password" class="form-control" placeholder="******" required minlength="6">
-          <div *ngIf="submitRegister && register.controls.password.errors" class="has-invalid">
-            <small *ngIf="register.controls.password.errors.required"><i class="fas fa-exclamation-triangle mr-2"></i>Yêu cầu nhập mật khẩu</small>
-            <small *ngIf="register.controls.password.errors.minlength"><i class="fas fa-exclamation-triangle mr-2"></i>Tối thiểu 6 kí tự</small>
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <div class="form-group position-relative">
+              <label>Phường/Xã: </label>
+              <ng-select [items]="dataWards" (change)="specificWard($event)" required notFoundText="Hãy chọn quận huyện của bạn"
+                [(ngModel)]="registerForm.wardId" bindValue="ward_id" name="wardId" bindLabel="ward_name">
+              </ng-select>
+            </div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <div class="form-group position-relative">
+              <label>Địa chỉ: </label>
+              <input type="text" name="address" [(ngModel)]="registerForm.address" class="form-control">
+            </div>
           </div>
         </div>
         <button class="btn btn-block btn-static rounded-sm btn-pun-danger" type="button" (click)="onSubmitRegister(register)">Đăng kí</button>

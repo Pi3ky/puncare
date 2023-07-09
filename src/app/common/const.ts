@@ -1,7 +1,7 @@
 export const shop_address = {
-  street: "số 55, đường Giải Phóng",
-  district: "Đồng Tâm, Bà Trưng, Hà Nội",
-  email: "chocopie.nuce@gmail.com",
+  street: "số 55, Giải Phóng",
+  district: "Đồng Tâm, HBT, HN",
+  email: "ka.0709fe@gmail.com",
   phone: "0386624545"
 }
 
@@ -10,8 +10,8 @@ export const open_hours = {
   weekend: "9h - 17h"
 }
 
-export const urlApi = 'https://punapi.herokuapp.com';
-// export const urlApi = 'http://localhost:3000';
+// export const urlApi = 'https://punapi.herokuapp.com';
+export const urlApi = 'http://localhost:3000';
 
 export const apiKeyTiny = "i1u3gxyfdlozuc01lhruv3w3nefuim410brum9o7yvusw64g"
 

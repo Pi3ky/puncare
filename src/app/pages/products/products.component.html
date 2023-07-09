@@ -35,8 +35,8 @@
           </div>
         </div>
       </div>
-      <div class="w-100 row">
-        <div class="col-12 col-md-6 col-lg-4 item-wrap" *ngFor="let product of listProducts | paginate: { id: 'custom_page', itemsPerPage: search.page_size, currentPage: search.page, totalItems: totalItems };">
+      <div class="row">
+        <div class="col-6 col-lg-4 item-wrap" *ngFor="let product of listProducts | paginate: { id: 'custom_page', itemsPerPage: search.page_size, currentPage: search.page, totalItems: totalItems };">
           <div class="card">
             <img [src]="product.image" class="card-img-top" [alt]="product.title">
             <div class="card-body">

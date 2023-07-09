@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Products } from 'src/app/common/type';
 import { PublicService } from 'src/app/_services/public.service';
-import { PagesService } from '../../pages.service';
 
 @Component({
   selector: 'app-details-product',
@@ -37,7 +36,6 @@ export class DetailsProductComponent implements OnInit {
     price: 0
   }
   constructor(
-    public pageService: PagesService,
     public bsModalRef: BsModalRef,
     public publicService: PublicService,
   ) { }

@@ -1,18 +1,20 @@
-.quote{
-  h1{
-    font-size: 50px;
-    font-weight: bold;
-  }
-  div {
-    font-size: 18px;
-    color: #817d7d;
-    font-weight: 500;
-  }
+
+.banner__heading {
+  font-size: 50px;
+  font-weight: bold;
+  margin-bottom: 2rem;
 }
+.banner__content {
+  font-size: 18px;
+  color: #817d7d;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
 .img-temp{
   height: 720px;
 }
-.head-content {
+.banner-primary {
   position: relative;
   background-color: #fffaf6;
 }
@@ -49,19 +51,21 @@
   }
 }
 
-.home-contact{
-  margin: 150px 0 50px 0;
+.promotions{
+  padding-bottom: 50px;
+  border-bottom: 1px solid #e0dbdb;
 }
-.stick{
-  height: 1px;
-  width: 100%;
-  background-color: #e0dbdb;
-}
-.services{
-  padding-top: 160px;
+.promotions-flex {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
 }
 
-.home-about-img {
+.spacing__section-h{
+  margin-bottom: 100px;
+}
+
+.iwt__img {
   position: relative;
   margin-right: 270px;
 }
@@ -80,13 +84,13 @@
   max-width: 280px;
   transform: translate3d(250px, 60px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(3deg) skew(0deg,0deg);
 }
-.about-us{
+.iwt__content {
   max-width: 45%;
   p{
     line-height: 2em;
   }
 }
-.box-about{
+.iwt{
   padding: 80px 0 70px 0;
 }
 
@@ -121,7 +125,7 @@
   .quote {
     text-align: center;
   }
-  .about-us{
+  .iwt__content{
     max-width: 100%;
   }
   .text-about{

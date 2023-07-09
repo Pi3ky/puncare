@@ -1,11 +1,11 @@
-<div class="head-content">
+<div class="banner-primary spacing__section-h">
   <div class="container-lg">
     <div class="row">
       <div class="col-12 col-lg-6 d-flex align-items-center">
-        <div class="quote mb-3">
-          <h1>Sự hài lòng của bạn là mục tiêu của chúng tôi</h1>
-          <div>Sản phẩm và dịch vụ của chúng tôi là để mang đến cho bạn và những người bạn nhỏ của bạn sự hài lòng</div>
-          <button class="btn btn-lg btn-pun-danger mt-4" (click)="openContactModal()">Liên hệ</button>
+        <div class="mb-3">
+          <h1 class="banner__heading">Sự hài lòng của bạn là mục tiêu của chúng tôi</h1>
+          <div class="banner__content">Sản phẩm và dịch vụ của chúng tôi là để mang đến cho bạn và những người bạn nhỏ của bạn sự hài lòng</div>
+          <button class="btn btn-lg btn-pun-danger" (click)="openContactModal()">Liên hệ</button>
         </div>
       </div>
       <div class="col-12 col-lg-6 text-center">
@@ -19,88 +19,84 @@
   </div>
 </div>
 
-<div class="home-contact">
-  <div class="container-lg">
-    <div class="px-0 px-md-3 px-lg-0 d-flex justify-content-between flex-wrap">
-      <!-- Contact -->
-      <div class="box-contact mr-0 mr-sm-4 mb-4">
-        <div class="circle-icon">
-          <i class="fas fa-at"></i>
-        </div>
-        <div class="content-contact">
-          <h4 class="font-weiht-bold">Liên hệ</h4>
-          <p class="mb-2">
-            <a href="{{shop_address.email}}"  class="text-pun-secondary">{{shop_address.email}}</a>
-          </p>
-          <p class="mb-2">
-            <a href="tel: {{shop_address.phone}}"  class="text-pun-secondary">{{shop_address.phone}}</a>
-          </p>
-        </div>
+<div class="container-lg promotions spacing__section-h">
+  <div class="px-0 px-md-3 px-lg-0 promotions-flex">
+    <!-- Contact -->
+    <div class="box-contact mr-0 mr-sm-4 mb-4">
+      <div class="circle-icon">
+        <i class="fas fa-at"></i>
       </div>
-      <!-- Open Hours -->
-      <div class="box-contact ml-0 ml-sm-4 mr-0 mr-lg-4 mb-4">
-        <div class="circle-icon">
-          <i class="fas fa-clock"></i>
-        </div>
-        <div class="content-contact">
-          <h4 class="font-weiht-bold">Giờ mở cửa</h4>
-          <label class="d-block">Thứ hai - Thứ sáu: <span class="text-pun-secondary">{{open_hours.weekly}}</span></label>
-          <label class="d-block">Saturday: <span class="text-pun-secondary">{{open_hours.weekend}}</span></label>
-          <label class="d-block">Sunday: <span class="text-pun-secondary">{{open_hours.weekend}}</span></label>
-        </div>
+      <div class="content-contact">
+        <h4 class="font-weiht-bold">Liên hệ</h4>
+        <p class="mb-2">
+          <a href="{{shop_address.email}}"  class="text-pun-secondary">{{shop_address.email}}</a>
+        </p>
+        <p class="mb-2">
+          <a href="tel: {{shop_address.phone}}"  class="text-pun-secondary">{{shop_address.phone}}</a>
+        </p>
       </div>
-      <!-- Location -->
-      <div class="box-contact ml-0 ml-lg-4">
-        <div class="circle-icon">
-          <i class="fas fa-map-marker-alt"></i>
-        </div>
-        <div class="content-contact">
-          <h4 class="font-weiht-bold">Địa chỉ</h4>
-          <label>{{shop_address.street}}</label>
-          <label>{{shop_address.district}}</label>
-        </div>
+    </div>
+    <!-- Open Hours -->
+    <div class="box-contact ml-0 ml-sm-4 mr-0 mr-lg-4 mb-4">
+      <div class="circle-icon">
+        <i class="fas fa-clock"></i>
+      </div>
+      <div class="content-contact">
+        <h4 class="font-weiht-bold">Giờ mở cửa</h4>
+        <label class="d-block">Thứ hai - Thứ sáu: <span class="text-pun-secondary">{{open_hours.weekly}}</span></label>
+        <label class="d-block">Saturday: <span class="text-pun-secondary">{{open_hours.weekend}}</span></label>
+        <label class="d-block">Sunday: <span class="text-pun-secondary">{{open_hours.weekend}}</span></label>
+      </div>
+    </div>
+    <!-- Location -->
+    <div class="box-contact ml-0 ml-lg-4">
+      <div class="circle-icon">
+        <i class="fas fa-map-marker-alt"></i>
+      </div>
+      <div class="content-contact">
+        <h4 class="font-weiht-bold">Địa chỉ</h4>
+        <label>{{shop_address.street}}</label>
+        <label>{{shop_address.district}}</label>
       </div>
     </div>
   </div>
 </div>
 
-<div class="container-lg stick"></div>
-
 <!-- Preview services -->
-<div class="container-lg mb-5">
-  <div class="services">
-    <h2 class="mb-5 font-weight-bold">Dịch vụ</h2>
-    <owl-carousel-o [options]="customOptions">
-      <ng-template carouselSlide *ngFor="let service of listServices">
-        <a class="box-service d-block d-md-flex" (click)="openService(service)">
+<div class="container-lg spacing__section-h">
+  <h2 class="mb-5 font-weight-bold">Dịch vụ</h2>
+  <owl-carousel-o [options]="customOptions">
+    <ng-template carouselSlide *ngFor="let service of listServices">
+      <a class="box-service row mx-0" (click)="openService(service)">
+        <div class="col-12 col-lg-4">
           <img class="box-img" [src]="service.image" [alt]="service.title">
-          <div class="d-flex flex-column">
-            <h3 class="font-weight-bold">{{service.title}}</h3>
-            <p>{{service.description}}</p>
-            <div class="d-flex mt-auto">
-              <ng-container *ngIf="service.price; else noPrice">
-                <span class="badge badge-pun-secondary mr-4">{{service.price | number : "4.0-2"}} VNĐ</span>
-              </ng-container>
-              <ng-template #noPrice>
-                <span class="badge badge-pun-secondary mr-4">Liên hệ</span>
-              </ng-template>
-              <span class="badge badge-pun-secondary">{{service.time}}</span>
-            </div>
+        </div>
+        <div class="d-flex flex-column col-12 col-lg-8">
+          <h3 class="font-weight-bold">{{service.title}}</h3>
+          <p>{{service.description}}</p>
+          <div class="d-flex mt-auto flex-wrap justify-content-between">
+            <ng-container *ngIf="service.price && service.price > 0; else noPrice">
+              <span class="badge badge-pun-secondary">{{service.price | number : "4.0-2"}} {{service.currency}}</span>
+            </ng-container>
+            <ng-template #noPrice>
+              <span class="badge badge-pun-secondary">Liên hệ</span>
+            </ng-template>
+            <span class="badge badge-pun-secondary" *ngIf="service?.time">{{service.time}}</span>
           </div>
-        </a>
-      </ng-template>
-    </owl-carousel-o>
-  </div>
+        </div>
+      </a>
+    </ng-template>
+  </owl-carousel-o>
 </div>
 
 <!-- About us -->
-<div class="box-about background-cloud px-lg-5">
+<div class="iwt background-cloud px-lg-5">
   <div class="d-flex mx-3 mx-lg-5">
-    <div class="home-about-img d-none d-lg-block">
+    <div class="iwt__img d-none d-lg-block">
       <img src="./assets/pun_image/home-about-img.jpeg" class="img-about">
       <img src="./assets/pun_image/home-about-cat.jpg" class="img-about img-cat-3d">
     </div>
-    <div class="about-us pl-lg-4">
+    <div class="iwt__content pl-lg-4">
       <h2 class="font-weight-bold mb-4">Giới thiệu</h2>
       <div class="d-block d-md-flex d-lg-block">
         <p class="text-pun-secondary font-weight-500 text-about">Với tình yêu dành cho thú cưng, chúng tôi đã bắt đầu xây dựng thương hiệu hạng nhất trong lĩnh vực chăm sóc các bạn nhỏ. Được thành lập vào năm 2000, hơn 21 năm, chúng tôi luôn ưu tiên trải nghiệm của khách hàng và sự thoải mái của những người bạn nhỏ của chúng tôi.</p>
@@ -119,7 +115,7 @@
           </p>
         </div>
       </div>
-      <a class="btn btn-lg btn-pun-danger mt-4" routerLink="/pages/about" routerLinkActive="active">Tìm hiểu thêm</a>
+      <a class="btn btn-lg btn-pun-danger mt-4" routerLink="/about" routerLinkActive="active">Tìm hiểu thêm</a>
     </div>
   </div>
 </div>

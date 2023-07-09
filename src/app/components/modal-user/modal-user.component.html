@@ -10,33 +10,43 @@
       <form #formUser="ngForm" class="mt-3">
         <div class="row form-group">
           <div class="col-12 col-md-6">
-            <label class="title-input-lg">Tên</label>
+            <label class="h5">Tên</label>
             <input type="text" name="name" class="form-control" [(ngModel)]="currentUser.name" placeholder="Nhập tên của bạn" required>
           </div>
           <div class="col-12 col-md-6">
-            <label class="title-input-lg">Địa chỉ email</label>
+            <label class="h5">Địa chỉ email</label>
             <input type="email" name="email" class="form-control" [(ngModel)]="currentUser.email" placeholder="Abc.123@puncare.vn" readonly>
           </div>
         </div>
         <div class="row form-group">
           <div class="col-12 col-md-6">
-            <label class="title-input-lg">Số điện thoại</label>
+            <label class="h5">Số điện thoại</label>
             <input type="tel" name="phone" class="form-control" [(ngModel)]="currentUser.phone" placeholder="(+84) 1234567890" required>
           </div>
           <div class="col-12 col-md-6">
-            <label class="title-input-lg">Địa chỉ</label>
-            <input type="text" name="address" class="form-control" [(ngModel)]="currentUser.address">
+            <label class="h5">Tỉnh/Thành phố</label>
+            <ng-select [items]="publicService.dataProvinces" (change)="specificProvince($event)" required
+              [(ngModel)]="currentUser.provinceId" bindValue="province_id" name="provinceId" bindLabel="province_name">
+            </ng-select>
           </div>
         </div>
         <div class="row form-group">
           <div class="col-12 col-md-6">
-            <label class="title-input-lg">Phường / Xã</label>
-            <input type="text" name="district" class="form-control" [(ngModel)]="currentUser.district">
+            <label class="h5">Quận/Huyện</label>
+            <ng-select [items]="dataDistricts" (change)="specificProvince($event)" required
+              [(ngModel)]="currentUser.districtId" bindValue="district_id" name="districtId" bindLabel="district_name">
+            </ng-select>
           </div>
           <div class="col-12 col-md-6">
-            <label class="title-input-lg">Tỉnh / Thành phố</label>
-            <input type="text" name="city" class="form-control" [(ngModel)]="currentUser.city">
+            <label class="h5">Phường/Xã</label>
+            <ng-select [items]="dataWards" (change)="specificWard($event)" required [(ngModel)]="currentUser.wardId"
+              bindValue="ward_id" name="wardId" bindLabel="ward_name">
+            </ng-select>
           </div>
+        </div>
+        <div class="form-group">
+          <label class="h5">Địa chỉ</label>
+          <input type="text" name="address" class="form-control" [(ngModel)]="currentUser.address">
         </div>
         <button class="btn btn-pun-danger btn-lg btn-contact my-4" type="button" (click)="onSubmit(formUser)">Cập nhật</button>
       </form>

@@ -15,6 +15,11 @@ export class AppComponent {
     if (!this.publicService.services.length) {
       this.getServices();
     }
+    if (!localStorage.getItem('provinces')) {
+      this.getProvinces();
+    } else {
+      this.publicService.dataProvinces = JSON.parse(localStorage.getItem('provinces'));
+    }
   }
 
   getServices(){
@@ -29,5 +34,17 @@ export class AppComponent {
         }
       )
     }
+  }
+
+  getProvinces() {
+    this.publicService.getProvinces().subscribe(
+      data => {
+        this.publicService.dataProvinces = data.results;
+        localStorage.setItem('provinces', JSON.stringify(data.results))
+      },
+      error => {
+        console.error(error);
+      }
+    )
   }
 }

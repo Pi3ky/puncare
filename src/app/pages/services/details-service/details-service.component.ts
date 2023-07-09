@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { finalize } from 'rxjs/operators';
 import { Services } from 'src/app/common/type';
-import { PagesService } from '../../pages.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { PublicService } from 'src/app/_services/public.service';
 import { AlertService } from 'src/app/_services/alert.service';
@@ -38,7 +37,6 @@ export class DetailsServiceComponent implements OnInit {
   currentUser: any;
   constructor(
     private route: ActivatedRoute,
-    public pageService: PagesService,
     private spinner: NgxSpinnerService,
     public publicService: PublicService,
     private authService: AuthService,

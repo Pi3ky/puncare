@@ -1,7 +1,7 @@
 <div class="container py-5">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a routerLink="/pages/home" routerLinkActive="active">Trang chủ</a></li>
+      <li class="breadcrumb-item"><a routerLink="/home" routerLinkActive="active">Trang chủ</a></li>
       <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
     </ol>
   </nav>
@@ -42,7 +42,7 @@
     </table>
   </div>
   <div class="text-right">
-    <button class="btn btn-outline-info mx-2" routerLink="/pages/products" routerLinkActive="active">Mua thêm sản phẩm</button>
-    <button class="btn btn-pun-danger btn-static rounded-sm mx-2" routerLink="/pages/payment" [disabled]="!orders?.total">Tiến hành thanh toán</button>
+    <button class="btn btn-outline-info mx-2" routerLink="/products" routerLinkActive="active">Mua thêm sản phẩm</button>
+    <button class="btn btn-pun-danger btn-static rounded-sm mx-2" routerLink="/payment" [disabled]="!orders?.total">Tiến hành thanh toán</button>
   </div>
 </div>

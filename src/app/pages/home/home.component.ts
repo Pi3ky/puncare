@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { PagesService } from '../pages.service';
 import { finalize } from "rxjs/operators";
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Services } from 'src/app/common/type';
@@ -77,7 +76,7 @@ export class HomeComponent implements OnInit {
    * @param service
    */
   openService(service: Services){
-    this.router.navigate(['/pages/services', service._id])
+    this.router.navigate(['/services', service._id])
   }
 
   openContactModal(){

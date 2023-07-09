@@ -110,7 +110,7 @@ body {
 }
 .box-service {
   border: 1px solid #e0dbdb;
-  padding: 60px 40px;
+  padding: 40px;
   border-radius: 20px;
   display: flex;
   background-color: #fff;
@@ -123,10 +123,14 @@ body {
   }
 }
 .box-img{
-  width: 125px !important;
-  height: 125px;
+  width: 125px;
   margin-bottom: 20px;
   margin-right: 30px;
+}
+@media screen and (max-width: 767.98px) {
+  .box-service {
+    padding: 1rem;
+  }
 }
 .badge{
   padding: 16px 26px;

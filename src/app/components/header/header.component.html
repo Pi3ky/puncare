@@ -1,12 +1,12 @@
 <div class="header-sticky {{scrollDown ? 'header-shadow' : 'background-cloud'}}">
   <nav class="navbar navbar-expand-lg navbar-light nav-pun-custom">
     <div class="container-lg">
-      <a class="navbar-brand" routerLink="/pages/home" routerLinkActive="active">
+      <a class="navbar-brand" routerLink="/home" routerLinkActive="active">
         <img src="./assets/pun_image/punshop.png" alt="logo" width="50">
         <label class="ml-3 mb-0 cursor-pointer font-weight-bold">Pun Care</label>
       </a>
       <div class="nav-item d-lg-none">
-        <a class="nav-link position-relative" routerLink="/pages/cart" routerLinkActive="active">
+        <a class="nav-link position-relative" routerLink="/cart" routerLinkActive="active">
           <i class="fas h4 mb-0 fa-shopping-cart"></i>
           <span class="count-cart position-absolute right-sm"
             *ngIf="publicService.orderProductValue?.total > 0">{{publicService.orderProductValue.total}}</span>
@@ -17,15 +17,15 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end">
         <ul class="navbar-nav">
-          <li class="nav-item mx-4"><a class="nav-link" routerLink="/pages/home" routerLinkActive="active">Trang chủ</a>
+          <li class="nav-item mx-4"><a class="nav-link" routerLink="/home" routerLinkActive="active">Trang chủ</a>
           </li>
-          <li class="nav-item mx-4"><a class="nav-link" routerLink="/pages/about" routerLinkActive="active">Giới thiệu</a></li>
-          <li class="nav-item mx-4"><a class="nav-link" routerLink="/pages/services" routerLinkActive="active">Dịch
+          <li class="nav-item mx-4"><a class="nav-link" routerLink="/about" routerLinkActive="active">Giới thiệu</a></li>
+          <li class="nav-item mx-4"><a class="nav-link" routerLink="/services" routerLinkActive="active">Dịch
               vụ</a></li>
-          <li class="nav-item mx-4"><a class="nav-link" routerLink="/pages/products" routerLinkActive="active">Sản
+          <li class="nav-item mx-4"><a class="nav-link" routerLink="/products" routerLinkActive="active">Sản
               phẩm</a></li>
           <li class="nav-item mx-4">
-            <a class="nav-link position-relative" routerLink="/pages/cart" routerLinkActive="active">
+            <a class="nav-link position-relative" routerLink="/cart" routerLinkActive="active">
               <i class="fas h4 mb-0 fa-shopping-cart"></i>
               <span class="count-cart position-absolute"
                 *ngIf="publicService.orderProductValue?.total > 0">{{publicService.orderProductValue.total}}</span>
@@ -60,12 +60,12 @@
 
   <div class="bg-white menu-collapsed" id="collapseBasic" [collapse]="!openMenu" [isAnimated]="true">
     <ul class="navbar-nav">
-      <li class="nav-item"><a class="nav-link" (click)="openMenu = !openMenu" routerLink="/pages/home" routerLinkActive="active">Trang chủ</a></li>
-      <li class="nav-item"><a class="nav-link" (click)="openMenu = !openMenu" routerLink="/pages/about" routerLinkActive="active">Giới thiệu</a></li>
-      <li class="nav-item"><a class="nav-link" (click)="openMenu = !openMenu" routerLink="/pages/services" routerLinkActive="active">Dịch vụ</a></li>
-      <li class="nav-item"><a class="nav-link" (click)="openMenu = !openMenu" routerLink="/pages/products" routerLinkActive="active">Sản phẩm</a></li>
+      <li class="nav-item"><a class="nav-link" (click)="openMenu = !openMenu" routerLink="/home" routerLinkActive="active">Trang chủ</a></li>
+      <li class="nav-item"><a class="nav-link" (click)="openMenu = !openMenu" routerLink="/about" routerLinkActive="active">Giới thiệu</a></li>
+      <li class="nav-item"><a class="nav-link" (click)="openMenu = !openMenu" routerLink="/services" routerLinkActive="active">Dịch vụ</a></li>
+      <li class="nav-item"><a class="nav-link" (click)="openMenu = !openMenu" routerLink="/products" routerLinkActive="active">Sản phẩm</a></li>
       <li class="nav-item">
-        <a class="nav-link d-flex" (click)="openMenu = !openMenu" routerLink="/pages/cart" routerLinkActive="active">
+        <a class="nav-link d-flex" (click)="openMenu = !openMenu" routerLink="/cart" routerLinkActive="active">
           <i class="fas h4 mb-0 fa-shopping-cart"></i>
           <span class="count-cart"
             *ngIf="publicService.orderProductValue?.total > 0">{{publicService.orderProductValue.total}}</span>

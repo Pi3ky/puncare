@@ -4,7 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { AlertService } from 'src/app/_services/alert.service';
 import { AuthService } from 'src/app/_services/auth-services.service';
 import { PublicService } from 'src/app/_services/public.service';
-import { PagesService } from '../../pages.service';
+import { District, Province, Ward } from 'src/app/common/type';
 
 @Component({
   selector: 'app-pay-order',
@@ -12,15 +12,20 @@ import { PagesService } from '../../pages.service';
   styleUrls: ['./pay-order.component.scss']
 })
 export class PayOrderComponent implements OnInit {
-  shippingFee = 20000;
+  readonly shippingFee: number = 20000;
   submitted = false;
   payForm = {
     name: '',
     address: '',
-    city: '',
+    bankingCode: '',
+    wardId: '',
+    wardName: '',
+    provinceId: '',
+    provinceName: '',
     phone: '',
     email: '',
-    district: '',
+    districtId: '',
+    districtName: '',
     totalPrice: 0,
     post_code: '',
     payment: 'banking',
@@ -40,12 +45,18 @@ export class PayOrderComponent implements OnInit {
       title: 'Thanh toán khi nhận hàng'
     },
   ]
+  dataDistricts: District[] = [];
+  dataWards: Ward[] = [];
+  dataQr = null;
+  readonly bankingAccount = {
+    id: 970418, //BIDV
+    name: "BUI DINH KHANG",
+    number: 45010006367712
+  };
   ordersList = [];
-  // currentUser: any;
   constructor(
     private publicService: PublicService,
     private authService: AuthService,
-    private pagesService: PagesService,
     private alertService: AlertService,
     private router: Router,
     private spinner: NgxSpinnerService,
@@ -58,8 +69,8 @@ export class PayOrderComponent implements OnInit {
       if (user) {
         this.payForm.name = user.name;
         this.payForm.phone = user.phone;
-        this.payForm.city = user.city;
-        this.payForm.district = user.district;
+        this.payForm.provinceId = user.city;
+        this.payForm.districtId = user.district;
         this.payForm.address = user.address;
         this.payForm.email = user.email;
         this.calcTotalPrice();
@@ -68,17 +79,47 @@ export class PayOrderComponent implements OnInit {
         this.calcTotalPrice();
       }
     })
+    this.payForm.bankingCode = this.genBankingCode();
+  }
+
+  genBankingCode() {
+    return "pcpo_" + new Date().valueOf()
+  }
+
+  createQrBanking(){
+    const body = {
+      accountNo: this.bankingAccount.number,
+      accountName: this.bankingAccount.name,
+      acqId: this.bankingAccount.id,
+      amount: this.shippingFee + this.payForm.totalPrice,
+      addInfo: this.payForm.bankingCode,
+      format: "text",
+      template: "compact2"
+    }
+    this.publicService.createQRBanking(body).subscribe(
+      result => {
+        this.dataQr = result.data;
+      },
+      err => {
+        console.error(err);
+      }
+    )
   }
 
   getPayFormDefault() {
     return {
       name: '',
       address: '',
-      city: '',
+      provinceId: '',
+      provinceName: '',
+      wardId: '',
+      wardName: '',
       phone: '',
       email: '',
-      district: '',
+      districtId: '',
+      districtName: '',
       totalPrice: 0,
+      bankingCode: '',
       post_code: '',
       payment: 'banking',
       status: 'created',
@@ -92,6 +133,43 @@ export class PayOrderComponent implements OnInit {
     this.ordersList.forEach(ord => {
       this.payForm.totalPrice += (ord.price * ord.quantity);
     })
+    this.createQrBanking();
+  }
+
+  specificProvince(evt) {
+    this.payForm.provinceName = evt.province_name;
+    this.getDistrict(evt.province_id)
+  }
+
+  getDistrict(id: string) {
+    this.publicService.getDistrict(id).subscribe(
+      districtData => {
+        this.dataDistricts = districtData.results;
+      },
+      error => {
+        console.error(error);
+      }
+    )
+  }
+
+  specificDistrict(evt) {
+    this.payForm.districtName = evt.district_name;
+    this.getWard(evt.district_id);
+  }
+
+  getWard(id: string) {
+    this.publicService.getWard(id).subscribe(
+      wardData => {
+        this.dataWards = wardData.results
+      },
+      err => {
+        console.error(err);
+      }
+    )
+  }
+
+  specificWard(evt) {
+    this.payForm.wardName = evt.ward_name;
   }
 
   submit(form) {
@@ -101,11 +179,11 @@ export class PayOrderComponent implements OnInit {
       this.spinner.show();
       this.payForm.items = this.ordersList;
       this.payForm.totalPrice += this.shippingFee;
-      this.pagesService.createOrder(this.payForm).subscribe(
+      this.publicService.createOrder(this.payForm).subscribe(
         res => {
           this.alertService.success('Đơn hàng đã được gửi đi!');
           this.publicService.setOrderProductValue(null);
-          this.router.navigate(['/pages/products'])
+          this.router.navigate(['/products'])
         },
         err => {
           console.error(err);

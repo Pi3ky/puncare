@@ -6,7 +6,6 @@ import { shop_address } from 'src/app/common/const';
 import { Services } from 'src/app/common/type';
 import { AlertService } from 'src/app/_services/alert.service';
 import { PublicService } from 'src/app/_services/public.service';
-import { PagesService } from '../pages.service';
 import { AuthService } from 'src/app/_services/auth-services.service';
 
 @Component({
@@ -45,14 +44,13 @@ export class ServicesComponent implements OnInit {
   shop_address = shop_address;
   currentUser: any;
   constructor(
-    public pageService: PagesService,
     private spinner: NgxSpinnerService,
     public publicService: PublicService,
     private router: Router,
     private authService: AuthService,
     private alertService: AlertService
   ) {
-   }
+  }
 
   ngOnInit() {
     this.getServices();
@@ -83,7 +81,7 @@ export class ServicesComponent implements OnInit {
    * @param service
    */
   openService(service: Services){
-    this.router.navigate(['/pages/services', service._id])
+    this.router.navigate(['/services', service._id])
   }
 
   onSubmit(form){

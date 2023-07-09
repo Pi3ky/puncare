@@ -4,6 +4,8 @@ import { Subject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { AlertService } from 'src/app/_services/alert.service';
 import { AuthService } from 'src/app/_services/auth-services.service';
+import { PublicService } from 'src/app/_services/public.service';
+import { District, Ward } from 'src/app/common/type';
 
 @Component({
   selector: 'app-login-customer',
@@ -27,15 +29,22 @@ export class LoginCustomerComponent implements OnInit {
     address: '',
     name: '',
     phone: '',
-    district: '',
-    city: ''
+    districtId: null,
+    districtName: '',
+    provinceId: null,
+    provinceName: '',
+    wardId: null,
+    wardName: '',
   }
+  dataDistricts: District[] = [];
+  dataWards: Ward[] = [];
   forgotForm = {
     email: ''
   }
   constructor(
     private authService: AuthService,
     private alertService: AlertService,
+    private publicService: PublicService,
     public bsModalRef: BsModalRef
   ) { }
 
@@ -65,6 +74,42 @@ export class LoginCustomerComponent implements OnInit {
         }
       )
     }
+  }
+
+  specificProvince(evt) {
+    this.registerForm.provinceName = evt.province_name;
+    this.getDistrict(evt.province_id)
+  }
+
+  getDistrict(id: string) {
+    this.publicService.getDistrict(id).subscribe(
+      districtData => {
+        this.dataDistricts = districtData.results;
+      },
+      error => {
+        console.error(error);
+      }
+    )
+  }
+
+  specificDistrict(evt) {
+    this.registerForm.districtName = evt.district_name;
+    this.getWard(evt.district_id);
+  }
+
+  getWard(id: string) {
+    this.publicService.getWard(id).subscribe(
+      wardData => {
+        this.dataWards = wardData.results
+      },
+      err => {
+        console.error(err);
+      }
+    )
+  }
+
+  specificWard(evt) {
+    this.registerForm.wardName = evt.ward_name;
   }
 
   onSubmitRegister(form) {
